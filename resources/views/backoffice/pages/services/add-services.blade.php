@@ -11,7 +11,8 @@
     <div class="box-header with-border">
         <h3 class="box-title">Add new service</h3>
     </div>
-    <form role="form">
+    <form enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\ServicesController@store') }}">
+        {{ csrf_field() }}  
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
@@ -20,8 +21,12 @@
         </div>
         <div class="box-body">
             <div class="input-group width100">
-                <textarea id="elm1" name="description" id="description" class="form-control" data-error="{{ __('backoffice/form.description-error') }}" required></textarea>
+                <textarea id="elm1" name="description" id="description" class="form-control"></textarea>
             </div>
+        </div>
+
+        <div class="box-body">
+            <input type="file" name="file" class="my-pond">
         </div>
 
 
@@ -38,8 +43,31 @@
     width: 100%;
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+
+<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 
 <script>
+// Turn input element into a pond
+jQuery('.my-pond').filepond();
+
+// Turn input element into a pond with configuration options
+jQuery('.my-pond').filepond({
+    allowMultiple: true
+});
+
+// Set allowMultiple property to true
+jQuery('.my-pond').filepond('allowMultiple', false);
+
+// Listen for addfile event
+jQuery('.my-pond').on('FilePond:addfile', function(e) {
+    console.log('file added event', e);
+});
+
+
 
  //Rich text editor
    tinymce.init({
@@ -50,7 +78,6 @@
            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
            "save table contextmenu directionality emoticons template paste textcolor image code"
      ],
-     content_css: "css/content.css",
      toolbar: "insertfile undo redo | link image | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons", 
      style_formats: [
           {title: 'Bold text', inline: 'b'},

@@ -131,7 +131,7 @@ return [
         'SETTINGS',
         [
             'text' => 'Privacy Policies',
-            'url' => 'admin/policies',
+            'url' => 'admin/privacy',
             'icon' => 'lock',
             'label_color' => 'success',
         ],
@@ -150,8 +150,12 @@ return [
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url' => '#',
+                    'text' => 'Add new',
+                    'url' => 'admin/users/create',
+                ],
+                [
+                    'text' => 'View all',
+                    'url' => 'admin/users',
                 ],
             ]
         ],

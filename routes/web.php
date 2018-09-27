@@ -25,15 +25,27 @@ Route::group(
     function () {
         Route::prefix('admin')->group(function () {
             /* --- Services --- */
-            Route::get('/services', 'backoffice\ServicesController@index')->name('services.admin');
-            Route::get('/services/create', 'backoffice\ServicesController@create')->name('services.admin.create');
-            Route::get('/services/delete/{id}', 'backoffice\ServicesController@destroy')->name('services.admin.delete');
-            Route::get('/services/edit/{id}', 'backoffice\ServicesController@edit')->name('services.admin.edit');
-            Route::post('/admin/services/edit', 'backoffice\ServicesController@update')->name('services.admin.update');
+            Route::get('/services', 'backoffice\ServicesController@index')->name('admin.services');
+            Route::get('/services/create', 'backoffice\ServicesController@create')->name('admin.services.create');
+            Route::post('/services/create', 'backoffice\ServicesController@store')->name('admin.services.create.submit');
+            Route::get('/services/delete/{id}', 'backoffice\ServicesController@destroy')->name('admin.services.delete');
+            Route::get('/services/edit/{id}', 'backoffice\ServicesController@edit')->name('admin.services.edit');
+            Route::post('/admin/services/edit', 'backoffice\ServicesController@update')->name('admin.services.update');
 
-            Route::get('/portfolio', 'backoffice\PortfolioController@index')->name('portfolio.admin');
-            Route::get('/contacts', 'backoffice\ContactsController@index')->name('contacts.admin');
+            Route::get('/portfolio', 'backoffice\PortfolioController@index')->name('admin.portfolio');
             
+            /* --- Contacts --- */
+            Route::get('/contacts', 'backoffice\ContactsController@index')->name('admin.contacts');
+            Route::get('/contacts/edit/', 'backoffice\ContactsController@edit')->name('admin.contacts.edit');
+            Route::post('/contacts', 'backoffice\ContactsController@update')->name('admin.contacts.update');
+
+            /* --- Privacy --- */
+            Route::get('/privacy', 'backoffice\PrivacyController@index')->name('admin.privacy');
+
+            /* --- Users --- */
+            Route::get('/users', 'backoffice\UsersController@index')->name('admin.users');
+            Route::get('/users/create', 'backoffice\UsersController@create')->name('admin.users.create');
+            Route::post('/users/create', 'backoffice\UsersController@store')->name('admin.users.create.submit');
             /* ---  Login  --- */
             Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
             Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

@@ -3,16 +3,10 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Contacts</h1>
+    <h1>Users</h1>
 @stop
 
 @section('content')
-
-<div class="box-header">
-    <a href="{{ route('admin.contacts.edit')}}"> 
-        <i class="fa fa-edit blue-square"></i> 
-    </a>
-</div>
 
 <div class="box">
     <!-- /.box-header -->
@@ -20,53 +14,51 @@
       <table id="example1" class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
+            <th>First name</th>
+            <th>Last name</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Secondary Phone</th>
-            <th>Adress</th>
-            <th>Facebook</th>
-            <th>Twitter</th>
-            <th>Linkedin</th>
+            <th>Type</th>
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    {{ $contact->email }}
-                </td>
-                
-                <td class="text-center">
-                    {{ $contact->phone }}
-                </td>
-
-                <td class="text-center">
-                    {{ $contact->secondaryPhone }}
-                </td>
-
-                <td class="text-center">
-                    {{ $contact->adress }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->facebook }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->twitter }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->linkedin }}
-                    <i class="fa fa-level-down right0" ></i>
-                </td>
-            </tr>
+            @foreach ($allUsers as $user)
+                <tr>
+                    <td>
+                        {{ $user->firstName }}
+                    </td>
+                    <td>
+                        {{ $user->lastName }}
+                    </td>
+                    <td>
+                        {{ $user->email }}
+                    </td>
+                    <td>
+                        @php
+                        switch($user->type){
+                            case(1):
+                                echo "<span class=\"label label-success\">Super Administrator</span>";
+                                break;
+                            case(2):
+                                echo "<span class=\"label label-warning\">Administrator</span>";
+                                break;
+                            case(3):
+                                echo "<span class=\"label label-error\">Publisher</span>";
+                                break;
+                            default:
+                                echo "<span class=\"label label-primary\">User</span>";
+                                break;
+                        }
+                            @endphp
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
         <tfoot>
           <tr>
+            <th>First name</th>
+            <th>Last name</th>
             <th>Email</th>
-            <th>Phone</th>
-            <th>Secondary Phone</th>
-            <th>Adress</th>
-            <th>Facebook</th>
-            <th>Twitter</th>
-            <th>Linkedin</th>
+            <th>Type</th>
           </tr>
         </tfoot>
       </table>

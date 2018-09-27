@@ -3,74 +3,26 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Contacts</h1>
+    <h1>Privacy Policies</h1>
+    
 @stop
 
 @section('content')
-
 <div class="box-header">
     <a href="{{ route('admin.contacts.edit')}}"> 
         <i class="fa fa-edit blue-square"></i> 
     </a>
 </div>
 
-<div class="box">
+<div class="box scroll">
     <!-- /.box-header -->
     <div class="box-body">
-      <table id="example1" class="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Secondary Phone</th>
-            <th>Adress</th>
-            <th>Facebook</th>
-            <th>Twitter</th>
-            <th>Linkedin</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    {{ $contact->email }}
-                </td>
-                
-                <td class="text-center">
-                    {{ $contact->phone }}
-                </td>
-
-                <td class="text-center">
-                    {{ $contact->secondaryPhone }}
-                </td>
-
-                <td class="text-center">
-                    {{ $contact->adress }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->facebook }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->twitter }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->linkedin }}
-                    <i class="fa fa-level-down right0" ></i>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Secondary Phone</th>
-            <th>Adress</th>
-            <th>Facebook</th>
-            <th>Twitter</th>
-            <th>Linkedin</th>
-          </tr>
-        </tfoot>
-      </table>
+        <div class="input-group">
+            {!! $privacy->description !!}
+        </div>
     </div>
+
+
     <!-- /.box-body -->
   </div>
   <!-- /.box -->
@@ -80,6 +32,11 @@
 
 
 <style>
+
+.scroll{
+  overflow-y: scroll;
+  height: 500px;
+}
 .red-square{
     background-color: #dd4b39;
     display: inline-block;

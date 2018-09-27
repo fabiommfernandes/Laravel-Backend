@@ -6,6 +6,7 @@ namespace App\Http\Controllers\backoffice;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 use Auth;
 use Analytics;
 use Spatie\Analytics\Period;
@@ -43,6 +44,21 @@ class ServicesController extends Controller
     {
         return view('backoffice.pages.services.add-services');
     }
+
+    public function store(Request $request)
+    {
+
+        dd($request);
+        $service = new Services();
+
+        $service->title = $request->request->get('title');
+        $service->description = $request->request->get('description');
+
+        $service->save();
+
+        return Redirect::to('admin/services');
+    }
+
 
     public function edit($id)
     {

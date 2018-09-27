@@ -8,7 +8,7 @@
 
 @section('content')
 
-<a class="btn btn-app"  href="{{ route('services.admin.create') }}"> 
+<a class="btn btn-app"  href="{{ route('admin.services.create') }}"> 
     <i class="fa fa-plus"></i> Add Service
 </a>
 
@@ -32,18 +32,18 @@
                       {{ $service->title }}
                       <div class="collapse expand" id="{{ $service->id }}">
                           <div class="card card-body">
-                              <a href="{{ route('services.admin.edit', ['id' => $service->id ])}}"> 
+                              <a href="{{ route('admin.services.edit', ['id' => $service->id ])}}"> 
                                 <i class="fa fa-edit blue-square"></i> 
                               </a> 
                               
-                              <a href="{{ route('services.admin.delete', ['id' => $service->id ])}}" onclick="return confirm('When delting this u')"> 
+                              <a href="{{ route('admin.services.delete', ['id' => $service->id ])}}" onclick="return confirm('When delting this u')"> 
                                 <i class="fa fa-close red-square"></i> 
                               </a> 
                           </div>
                       </div>
                   </td>
                   
-                  <td>
+                  <td class="text-center">
                       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
                           Preview description
                       </button>
