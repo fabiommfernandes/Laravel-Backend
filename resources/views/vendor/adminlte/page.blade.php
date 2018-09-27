@@ -1,4 +1,5 @@
 @extends('adminlte::master')
+@include('backoffice.partials._head')
 
 @section('adminlte_css')
     <link rel="stylesheet"
