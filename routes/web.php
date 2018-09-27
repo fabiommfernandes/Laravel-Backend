@@ -11,11 +11,13 @@
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
+/*
+    ADMIN AUTH ROUTES 
+*/
+
+
+
 
 
 Route::group(
@@ -27,11 +29,17 @@ Route::group(
             Route::get('/services/create', 'backoffice\ServicesController@create')->name('services.admin.create');
             Route::get('/portfolio', 'backoffice\PortfolioController@index')->name('portfolio.admin');
             Route::get('/contacts', 'backoffice\ContactsController@index')->name('contacts.admin');
-
+            
+            Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+            Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+            Route::get('/', 'backoffice\DashboardController@index')->name('dashboard.admin');
         });
     }
 );
 
 
+
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
