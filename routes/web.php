@@ -39,7 +39,7 @@ Route::group(
             Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 
             /* --- Logout --- */
-            Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+            Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
             /* --- Dashboard --- */
             Route::get('/', 'backoffice\DashboardController@index')->name('admin.dashboard');
