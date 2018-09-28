@@ -105,4 +105,13 @@ class UsersController extends Controller
         return Redirect::to('admin/users');
     }
 
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|dumbpwd|confirmed',
+        ]);
+    }
+
 }
