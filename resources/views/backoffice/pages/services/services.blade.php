@@ -8,10 +8,6 @@
 
 @section('content')
 
-<a class="btn btn-app"  href="{{ route('admin.services.create') }}"> 
-    <i class="fa fa-plus"></i> Add Service
-</a>
-
 <div class="box">
     <div class="box-header">
       <h3 class="box-title">Services</h3>

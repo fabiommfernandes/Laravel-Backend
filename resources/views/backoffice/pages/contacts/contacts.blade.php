@@ -17,59 +17,55 @@
 <div class="box">
     <!-- /.box-header -->
     <div class="box-body">
-      <table id="example1" class="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Secondary Phone</th>
-            <th>Adress</th>
-            <th>Facebook</th>
-            <th>Twitter</th>
-            <th>Linkedin</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    {{ $contact->email }}
-                </td>
-                
-                <td class="text-center">
-                    {{ $contact->phone }}
-                </td>
 
-                <td class="text-center">
-                    {{ $contact->secondaryPhone }}
-                </td>
+        <div class="box-body">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" value="{{ $contact->email }}" disabled>
+            </div>
+        </div>
 
-                <td class="text-center">
-                    {{ $contact->adress }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->facebook }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->twitter }}
-                </td>
-                <td class="text-center">
-                    {{ $contact->linkedin }}
-                    <i class="fa fa-level-down right0" ></i>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Secondary Phone</th>
-            <th>Adress</th>
-            <th>Facebook</th>
-            <th>Twitter</th>
-            <th>Linkedin</th>
-          </tr>
-        </tfoot>
-      </table>
+        <div class="box-body">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" value="{{ $contact->phone }}" disabled>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" value="{{ $contact->secondaryPhone }}" disabled>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" value="{{ $contact->adress }}" disabled>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" value="{{ $contact->facebook }}" disabled>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" value="{{ $contact->twitter }}" disabled>
+            </div>
+        </div>
+
+        <div class="box-body">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" value="{{ $contact->linkedin }}" disabled>
+            </div>
+        </div>
     </div>
     <!-- /.box-body -->
   </div>

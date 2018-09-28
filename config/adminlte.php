@@ -120,6 +120,16 @@ return [
             'url' => 'admin/services',
             'icon' => 'cogs',
             'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Add new service',
+                    'url' => 'admin/services/create',
+                ],
+                [
+                    'text' => 'View all',
+                    'url' => 'admin/services',
+                ],
+            ]
         ],
         [
             'text' => 'Portfolio',
@@ -150,7 +160,7 @@ return [
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Add new',
+                    'text' => 'Add new user',
                     'url' => 'admin/users/create',
                 ],
                 [

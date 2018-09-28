@@ -22,9 +22,20 @@
         </thead>
         <tbody>
             @foreach ($allUsers as $user)
-                <tr>
+                <tr data-toggle="collapse" data-target="#{{ $user->id }}" role="button">
                     <td>
                         {{ $user->firstName }}
+                        <div class="collapse expand" id="{{ $user->id }}">
+                            <div class="card card-body">
+                                <a href="{{ route('admin.services.edit', ['id' => $user->id ])}}"> 
+                                    <i class="fa fa-edit blue-square"></i> 
+                                </a> 
+                                
+                                <a href="{{ route('admin.services.delete', ['id' => $user->id ])}}" onclick="return confirm('When delting this u')"> 
+                                    <i class="fa fa-close red-square"></i> 
+                                </a> 
+                            </div>
+                        </div>
                     </td>
                     <td>
                         {{ $user->lastName }}
@@ -49,6 +60,9 @@
                                 break;
                         }
                             @endphp
+
+                    <i class="fa fa-level-down right0" ></i>
+
                     </td>
                 </tr>
             @endforeach
