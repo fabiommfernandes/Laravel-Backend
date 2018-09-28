@@ -21,11 +21,14 @@
           </tr>
         </thead>
         <tbody>
+            @php 
+                $i = 0; 
+            @endphp
             @foreach ($allUsers as $user)
-                <tr data-toggle="collapse" data-target="#{{ $user->id }}" role="button">
+                <tr data-toggle="collapse" data-target="#{{ $i }}" role="button">
                     <td>
                         {{ $user->firstName }}
-                        <div class="collapse expand" id="{{ $user->id }}">
+                        <div class="collapse expand" id="{{ $i }}">
                             <div class="card card-body">
                                 <a href="{{ route('admin.services.edit', ['id' => $user->id ])}}"> 
                                     <i class="fa fa-edit blue-square"></i> 
@@ -53,18 +56,21 @@
                                 echo "<span class=\"label label-warning\">Administrator</span>";
                                 break;
                             case(3):
-                                echo "<span class=\"label label-error\">Publisher</span>";
+                                echo "<span class=\"label label-danger\">Publisher</span>";
                                 break;
                             default:
                                 echo "<span class=\"label label-primary\">User</span>";
                                 break;
                         }
-                            @endphp
+                        @endphp
 
-                    <i class="fa fa-level-down right0" ></i>
+                    <i class="fa fa-level-down right0"></i>
 
                     </td>
                 </tr>
+            @php
+                $i++;
+            @endphp
             @endforeach
         </tbody>
         <tfoot>

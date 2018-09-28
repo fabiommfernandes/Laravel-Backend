@@ -122,7 +122,7 @@ return [
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Add new service',
+                    'text' => 'Add new',
                     'url' => 'admin/services/create',
                 ],
                 [
@@ -160,7 +160,7 @@ return [
             'label_color' => 'success',
             'submenu' => [
                 [
-                    'text' => 'Add new user',
+                    'text' => 'Add new',
                     'url' => 'admin/users/create',
                 ],
                 [

@@ -44,14 +44,12 @@
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                <select class="form-control select2" name="type" id="type" style="width: 100%;">
+                    <option selected="selected" disabled>Choose one option</option>
+                    <option value="1">Super Administrator</option>
+                    <option value="2">Administrator</option>
+                    <option value="3">Publisher</option>
+                    <option value="4">User</option>
                 </select>
             </div>
         </div>

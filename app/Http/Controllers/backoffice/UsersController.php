@@ -6,10 +6,13 @@ namespace App\Http\Controllers\backoffice;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 use Auth;
 use Analytics;
 use Spatie\Analytics\Period;
 use Lava;
+use App\Admin;
+use App\User;
 
 
 class UsersController extends Controller
@@ -42,7 +45,7 @@ class UsersController extends Controller
             }
         }
 
-        if (!empty($user)) {
+        if (!empty($users)) {
 
             foreach ($users as $user) {
                 array_push($allUsers, $user);
@@ -56,4 +59,50 @@ class UsersController extends Controller
     {
         return view('backoffice.pages.users.add-users');
     }
+
+    public function store(Request $request)
+    {
+
+        if ($request->request->get('type') == '4') {
+            $user = new User();
+
+            $user->firstName = $request->request->get('name');
+            $user->lastName = $request->request->get('lastname');
+            $user->email = $request->request->get('email');
+            $user->password = bcrypt($request->request->get('password'));
+            $user->type = $request->request->get('type');
+
+            $user->save();
+
+
+        } else {
+            $admin = new Admin();
+            $admin->firstName = $request->request->get('name');
+            $admin->lastName = $request->request->get('lastname');
+            $admin->email = $request->request->get('email');
+            $admin->password = bcrypt($request->request->get('password'));
+            $admin->type = $request->request->get('type');
+
+            $admin->save();
+
+        }
+
+        /*if ($admin->type == '4') {
+            if (User::where('email', '=', $admin->email)->count() > 0 || Admin::where('email', '=', $admin->email)->count() > 0) {
+                return Redirect::to('admin/users/create');
+            } else {
+                $user->save();
+            }
+        } else {
+            if (Admin::where('email', '=', $admin->email)->count() > 0 || User::where('email', '=', $admin->email)->count() > 0) {
+                return Redirect::to('admin/users/create');
+            } else {
+                $admin->save();
+            }
+        }*/
+
+
+        return Redirect::to('admin/users');
+    }
+
 }
