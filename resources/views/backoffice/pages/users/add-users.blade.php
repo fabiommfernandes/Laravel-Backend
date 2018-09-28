@@ -40,7 +40,10 @@
                 <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
         </div>
-
+        <template>
+                <password v-model="password"/>
+              </template>
+              
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
@@ -54,6 +57,26 @@
             </div>
         </div>
             
+              
+              <script>
+                import Password from 'vue-password-strength-meter'
+                export default {
+                  components: { Password },
+                  data: () => ({
+                    password: null
+                  }),
+                  methods: {
+                    showFeedback ({suggestions, warning}) {
+                      console.log('🙏', suggestions)
+                      console.log('⚠', warning)
+                    },
+                    showScore (score) {
+                      console.log('💯', score)
+                    }
+                  }
+                }
+              </script>
+              
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
