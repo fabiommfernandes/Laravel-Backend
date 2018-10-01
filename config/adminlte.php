@@ -113,7 +113,7 @@ return [
             'text' => 'Dashboard',
             'url' => 'admin/',
             'icon' => 'dashboard',
-            'label_color' => 'success',
+            'label_color' => 'sucess',
         ],
         [
             'text' => 'Services',
@@ -124,6 +124,7 @@ return [
                 [
                     'text' => 'Add new',
                     'url' => 'admin/services/create',
+
                 ],
                 [
                     'text' => 'View all',
@@ -136,6 +137,18 @@ return [
             'url' => 'admin/portfolio',
             'icon' => 'th-list',
             'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Add new',
+                    'url' => 'admin/portfolio/create',
+
+                ],
+                [
+                    'text' => 'View all',
+                    'url' => 'admin/portfolio',
+                ],
+            ]
+
         ],
 
         'SETTINGS',

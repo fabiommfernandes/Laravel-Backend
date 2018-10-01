@@ -58,25 +58,46 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-                        <li>
-                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ route('admin.logout') }}">
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                </a>
-                            @else
-                                <a href="#"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                >
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                </a>
-                                <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
-                                    @if(config('adminlte.logout_method'))
-                                        {{ method_field(config('adminlte.logout_method')) }}
-                                    @endif
-                                    {{ csrf_field() }}
-                                </form>
-                            @endif
-                        </li>
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="https://comup.pt/images/user/user-logo.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">
+                                    @php 
+                                        $user = Auth::user(); 
+                                        $current = $user->getAttributes();
+                                        echo  $current['firstName']; echo "&nbsp"; echo $current['lastName'];
+                                    @endphp
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                <img src="https://comup.pt/images/user/user-logo.jpg" class="img-circle" alt="User Image">
+                                <p>
+                                    @php 
+                                        $user = Auth::user(); 
+                                        $current = $user->getAttributes();
+                                        echo  $current['firstName']; echo "&nbsp"; echo $current['lastName'];
+                                    @endphp
+                                </p>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{{ route('admin.users.my-profile', ['id' => $current['id'] ]) }}" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat"><i class="fa fa-fw fa-power-off"></i> Log out</a>
+        
+                                        <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
+                                            @if(config('adminlte.logout_method'))
+                                                {{ method_field(config('adminlte.logout_method')) }}
+                                            @endif
+                                            {{ csrf_field() }}
+                                        </form>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>   
                     </ul>
                 </div>
                 @if(config('adminlte.layout') == 'top-nav')

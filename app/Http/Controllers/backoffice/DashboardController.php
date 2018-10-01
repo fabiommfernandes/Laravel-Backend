@@ -31,6 +31,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         return view('backoffice.pages.dashboard.dashboard');
     }
 

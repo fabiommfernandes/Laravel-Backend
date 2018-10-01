@@ -141,7 +141,7 @@ password.addEventListener('input', function()
 }
 .fa-eye,.fa-eye-slash{
     position: absolute;
-    right: 30px;
+    right: 10px;
     z-index: 10;
     top: 10px;
     font-size: 15px;

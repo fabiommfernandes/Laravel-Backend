@@ -33,7 +33,9 @@ Route::group(
             Route::post('/admin/services/edit', 'backoffice\ServicesController@update')->name('admin.services.update');
 
             Route::get('/portfolio', 'backoffice\PortfolioController@index')->name('admin.portfolio');
-            
+            Route::get('/portfolio/create', 'backoffice\PortfolioController@create')->name('admin.portfolio.create');
+            Route::post('/portfolio/create', 'backoffice\PortfolioController@store')->name('admin.portfolio.create.submit');
+            Route::get('/portfolio/delete/{id}', 'backoffice\PortfolioController@destroy')->name('admin.portfolio.delete');
             /* --- Contacts --- */
             Route::get('/contacts', 'backoffice\ContactsController@index')->name('admin.contacts');
             Route::get('/contacts/edit/', 'backoffice\ContactsController@edit')->name('admin.contacts.edit');
@@ -46,6 +48,10 @@ Route::group(
             Route::get('/users', 'backoffice\UsersController@index')->name('admin.users');
             Route::get('/users/create', 'backoffice\UsersController@create')->name('admin.users.create');
             Route::post('/users/create', 'backoffice\UsersController@store')->name('admin.users.create.submit');
+            Route::get('/users/my-profile/{id}', 'backoffice\UsersController@myProfile')->name('admin.users.my-profile');
+            Route::post('/users/my-profile/{id}', 'backoffice\UsersController@storeMyProfile')->name('admin.users.store.my-profile');
+
+
             /* ---  Login  --- */
             Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
             Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

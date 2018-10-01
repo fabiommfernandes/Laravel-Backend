@@ -114,4 +114,31 @@ class UsersController extends Controller
         ]);
     }
 
+    protected function myProfile($id)
+    {
+        $user = Auth::User();
+        $current = $user->getAttributes();
+        return view('backoffice.pages.users.my-profile', compact("current", "user"));
+    }
+
+    protected function storeMyProfile(Request $request)
+    {
+        $admin = new Admin();
+
+        $updatedUser = array(
+            'firstName' => $request->request->get('name'),
+            'lastName' => $request->request->get('lastname'),
+            'email' => $request->request->get('email'),
+            'password' => bcrypt($request->request->get('password')),
+        );
+
+        DB::table('admins')->where('id', $request->request->get('id'))->update($updatedUser);
+
+        $user = Auth::User();
+        $current = $user->getAttributes();
+
+        return \App::make('redirect')->back();
+
+    }
+
 }
