@@ -38,12 +38,10 @@ Route::group(
             Route::get('/portfolio/delete/{id}', 'backoffice\PortfolioController@destroy')->name('admin.portfolio.delete');
             /* --- Contacts --- */
             Route::get('/contacts', 'backoffice\ContactsController@index')->name('admin.contacts');
-            Route::get('/contacts/edit/', 'backoffice\ContactsController@edit')->name('admin.contacts.edit');
             Route::post('/contacts', 'backoffice\ContactsController@update')->name('admin.contacts.update');
 
             /* --- Privacy --- */
             Route::get('/privacy', 'backoffice\PrivacyController@index')->name('admin.privacy');
-            Route::get('/privacy/edit', 'backoffice\PrivacyController@edit')->name('admin.privacy.edit');
             Route::post('/privacy/edit', 'backoffice\PrivacyController@update')->name('admin.privacy.edit.update');
 
             /* --- Users --- */

@@ -38,13 +38,6 @@ class PrivacyController extends Controller
         return view('backoffice.pages.privacy.privacy', compact('privacy'));
     }
 
-    public function edit()
-    {
-        $privacy = DB::table('policiestranslations')->get()->first();
-
-        return view('backoffice.pages.privacy.edit-privacy', compact('privacy'));
-    }
-
     public function update(Request $request)
     {
 

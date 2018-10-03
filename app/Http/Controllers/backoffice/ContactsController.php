@@ -37,13 +37,6 @@ class ContactsController extends Controller
         return view('backoffice.pages.contacts.contacts', compact('contact'));
     }
 
-    public function edit()
-    {
-        $contact = DB::table('contacts')->get()->first();
-
-        return view('backoffice.pages.contacts.edit-contacts', compact('contact'));
-    }
-
     public function update()
     {
         $updatedContacts = array(

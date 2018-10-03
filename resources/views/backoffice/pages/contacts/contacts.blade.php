@@ -9,71 +9,79 @@
 @section('content')
 
 <div class="box-header">
-    <a href="{{ route('admin.contacts.edit')}}"> 
+    <a onclick="enableInputs()"> 
         <i class="fa fa-edit blue-square"></i> 
     </a>
 </div>
 
-<div class="box">
-    <!-- /.box-header -->
-    <div class="box-body">
-
+<form enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\ContactsController@update') }}">
+    {{ csrf_field() }}  
+    <div class="box">
+        <!-- /.box-header -->
         <div class="box-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" value="{{ $contact->email }}" disabled>
+
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="email" class="form-control" name="email" value="{{ $contact->email }}" disabled>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="text" class="form-control" name="phone" value="{{ $contact->phone }}" disabled>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="text" class="form-control" name="secondaryPhone" value="{{ $contact->secondaryPhone }}" disabled>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="text" class="form-control" name="adress" value="{{ $contact->adress }}" disabled>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="text" class="form-control" name="facebook" value="{{ $contact->facebook }}" disabled>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="text" class="form-control" name="twitter" value="{{ $contact->twitter }}" disabled>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="text" class="form-control" name="linkedin" value="{{ $contact->linkedin }}" disabled>
+                </div>
+            </div>
+
+            <input type="hidden" name="id" value="{{ $contact->id }}">
+
+            <div class="box-footer submit" style="display: none;">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-
-        <div class="box-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" value="{{ $contact->phone }}" disabled>
-            </div>
-        </div>
-
-        <div class="box-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" value="{{ $contact->secondaryPhone }}" disabled>
-            </div>
-        </div>
-
-        <div class="box-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" value="{{ $contact->adress }}" disabled>
-            </div>
-        </div>
-
-        <div class="box-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" value="{{ $contact->facebook }}" disabled>
-            </div>
-        </div>
-
-        <div class="box-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" value="{{ $contact->twitter }}" disabled>
-            </div>
-        </div>
-
-        <div class="box-body">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" value="{{ $contact->linkedin }}" disabled>
-            </div>
-        </div>
+        <!-- /.box-body -->
     </div>
-    <!-- /.box-body -->
-  </div>
-  <!-- /.box -->
-</div>
-<!-- /.col -->
-</div>
-
+    <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    </div>
+</form>
 
 <style>
 .red-square{
@@ -155,17 +163,28 @@
 </style>
 
 <script>
-  jQuery(function () {
-    jQuery('#example1').DataTable({
-      'paging': false,
-      'lengthChange': false,
-      'searching': false,
-      'ordering': false,
-      'info': false,
-      'autoWidth': true
-    })
+function  enableInputs(){
+    if(jQuery('.submit').is(':visible')){
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = true;
+        }
+        jQuery('.submit').css('display','none');
+        jQuery('.passwordinput').css('display','none');
 
-  })
+    }else{
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].disabled = false;
+        }
+
+        jQuery('.submit').css('display','block');
+        jQuery('.passwordinput').css('display','block');
+
+    }
+
+}
+
 </script>
 
 @stop
