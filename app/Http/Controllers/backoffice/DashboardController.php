@@ -32,13 +32,17 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        //fetch the most visited pages for today and the past week
-        $mostPage = Analytics::fetchMostVisitedPages(Period::days(7));
 
+
+        $devices = app('App\Services\Devices')->devices();
+        $devicesUsed = app('App\Services\Devices')->devicesUsed($devices);
+        //returns most viewed pages
+        $trending = app('App\Services\Trending')->week();
+        //returns regions (only country atm)
+        $countries = app('App\Services\Regions')->regions();
+
+        dd($countries);
         //fetch visitors and page views for the past week
-        $visitors = Analytics::fetchVisitorsAndPageViews(Period::days(7));
-
-        dd($mostPage, $visitors);
 
         return view('backoffice.pages.dashboard.dashboard');
     }
