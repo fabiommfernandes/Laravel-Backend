@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="box-header">
-    <a href="#" onclick="enableInputs()"> 
+    <a onclick="enableInputs()"> 
         <i class="fa fa-edit blue-square"></i> 
     </a>
 </div>
