@@ -87,7 +87,7 @@
                                     <div class="pull-right">
                                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat"><i class="fa fa-fw fa-power-off"></i> Log out</a>
         
-                                        <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                             @if(config('adminlte.logout_method'))
                                                 {{ method_field(config('adminlte.logout_method')) }}
                                             @endif

@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="box-header">
-    <a href="{{ route('admin.contacts.edit')}}"> 
+    <a href="{{ route('admin.privacy.edit')}}"> 
         <i class="fa fa-edit blue-square"></i> 
     </a>
 </div>
@@ -21,8 +21,6 @@
             {!! $privacy->description !!}
         </div>
     </div>
-
-
     <!-- /.box-body -->
   </div>
   <!-- /.box -->
