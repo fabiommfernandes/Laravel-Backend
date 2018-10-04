@@ -23,4 +23,6 @@
 
       gtag('config', 'UA-78758034-2');
     </script>
+
+    <title>Backoffice V2</title>
 </head> 
