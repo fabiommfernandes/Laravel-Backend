@@ -10,12 +10,12 @@ class Regions
     public function regions()
     {
         $time = Period::days(30);
-        $metrics = "ga:uniquePageviews"; 
-        $others = ['dimensions' => 'ga:country'];
+        $metrics = "ga:uniquePageviews";
+        $others = ['dimensions' => 'ga:countryIsoCode'];
 
-        $results  = Analytics::performQuery($time, $metrics, $others  )->rows; 
-    
-        return $results; 
+        $results = Analytics::performQuery($time, $metrics, $others)->rows;
+
+        return $results;
     }
 
 }

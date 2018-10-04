@@ -33,18 +33,48 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        $pageViews = Analytics::fetchVisitorsAndPageViews(Period::days(7))[0]['pageViews'];
+        $visitors = Analytics::fetchVisitorsAndPageViews(Period::days(7))[0]['visitors'];
+
+        $users = Analytics::performQuery(Period::days(30), 'ga:users')->rows[0][0];
+
+        $time = Analytics::performQuery(Period::days(30), 'ga:sessionDuration')[0][0] / 60;
+        $time = number_format((float)$time, 0, '.', '') . 'h';
+
+        $mostVisitedPages = Analytics::fetchMostVisitedPages(Period::days(7));
+        $browsers = Analytics::fetchTopBrowsers(Period::days(7));
 
         $devices = app('App\Services\Devices')->devices();
         $devicesUsed = app('App\Services\Devices')->devicesUsed($devices);
-        //returns most viewed pages
         $trending = app('App\Services\Trending')->week();
-        //returns regions (only country atm)
         $countries = app('App\Services\Regions')->regions();
 
-        dd($countries);
+        $reasons = \Lava::DataTable();
+        $reasons->addStringColumn('Devices')
+            ->addNumberColumn(1);
+
+        foreach ($devices as $device) {
+            $reasons->addRow([$device['device'], (int)$device['pageviews']]);
+        }
+
+        \Lava::PieChart('devicesPie', $reasons, [
+            'is3D' => false,
+            'colors' => array('#ffffff'),
+            'colorAxis' => [
+                'colors' => ['#449eff', '005abb']
+            ],
+            'backgroundColor' => '#505050',
+            'height' => 400,
+            'chartArea' => [
+                'width' => '75%',
+                'height' => '70%'
+            ]
+
+        ]);
+
         //fetch visitors and page views for the past week
 
-        return view('backoffice.pages.dashboard.dashboard');
+        return view('backoffice.pages.dashboard.dashboard', compact('pageViews', 'users', 'time', 'visitors', 'countries', 'devicesPie'));
     }
 
 }
