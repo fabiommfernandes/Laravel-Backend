@@ -35,6 +35,9 @@ Route::group(
             Route::get('/portfolio', 'backoffice\PortfolioController@index')->name('admin.portfolio');
             Route::get('/portfolio/create', 'backoffice\PortfolioController@create')->name('admin.portfolio.create');
             Route::post('/portfolio/create', 'backoffice\PortfolioController@store')->name('admin.portfolio.create.submit');
+            Route::get('/portfolio/edit/{id}', 'backoffice\PortfolioController@edit')->name('admin.portfolio.edit');
+            Route::post('/portfolio/edit', 'backoffice\PortfolioController@update')->name('admin.portfolio.edit.submit');
+
             Route::get('/portfolio/delete/{id}', 'backoffice\PortfolioController@destroy')->name('admin.portfolio.delete');
             /* --- Contacts --- */
             Route::get('/contacts', 'backoffice\ContactsController@index')->name('admin.contacts');
