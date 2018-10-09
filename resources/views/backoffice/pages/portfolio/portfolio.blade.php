@@ -28,7 +28,7 @@
                       {{ $portfolio->title }}
                       <div class="collapse expand" id="{{ $portfolio->id }}">
                           <div class="card card-body">
-                              <a href="{{ route('admin.services.edit', ['id' => $portfolio->id ])}}"> 
+                              <a href="{{ route('admin.portfolio.edit', ['id' => $portfolio->id ])}}"> 
                                 <i class="fa fa-edit blue-square"></i> 
                               </a> 
                               

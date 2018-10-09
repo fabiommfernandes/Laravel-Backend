@@ -59,6 +59,28 @@ class PortfolioController extends Controller
         return Redirect::to('admin/portfolio');
     }
 
+    public function edit($id)
+    {
+        $services = DB::table('services')->get();
+        $portfolio = DB::table('portfolio')->where('id', '=', $id)->get()->first();
+
+        return view('backoffice.pages.portfolio.edit-portfolio', compact('portfolio', 'services'));
+    }
+
+    public function update(Request $request)
+    {
+        $updatedPortfolio = array(
+            'title' => $request->request->get('title'),
+            'description' => $request->request->get('description'),
+            'servicesId' => $request->request->get('servicesId'),
+        );
+
+        DB::table('portfolio')->where('id', $request->request->get('id'))->update($updatedPortfolio);
+
+        return Redirect::to('admin/portfolio');
+
+    }
+
     public function destroy($id)
     {
         $portfolio = Portfolio::destroy($id);
