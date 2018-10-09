@@ -31,12 +31,18 @@ Route::group(
             Route::get('/services/delete/{id}', 'backoffice\ServicesController@destroy')->name('admin.services.delete');
             Route::get('/services/edit/{id}', 'backoffice\ServicesController@edit')->name('admin.services.edit');
             Route::post('/admin/services/edit', 'backoffice\ServicesController@update')->name('admin.services.update');
+            Route::post('/services/imageUpload', 'backoffice\ServicesController@imageUpload')->name('admin.image-upload');
+            Route::post('/services/imageDelete', 'backoffice\ServicesController@imageDelete')->name('admin.image-delete');
+            Route::get('/services/imageLoad', 'backoffice\ServicesController@imageLoad')->name('admin.image-load');
 
             Route::get('/portfolio', 'backoffice\PortfolioController@index')->name('admin.portfolio');
             Route::get('/portfolio/create', 'backoffice\PortfolioController@create')->name('admin.portfolio.create');
             Route::post('/portfolio/create', 'backoffice\PortfolioController@store')->name('admin.portfolio.create.submit');
             Route::get('/portfolio/edit/{id}', 'backoffice\PortfolioController@edit')->name('admin.portfolio.edit');
             Route::post('/portfolio/edit', 'backoffice\PortfolioController@update')->name('admin.portfolio.edit.submit');
+            Route::post('/portfolio/imageUpload', 'backoffice\PortfolioController@imageUpload')->name('admin.image-upload');
+            Route::post('/portfolio/imageDelete', 'backoffice\PortfolioController@imageDelete')->name('admin.image-delete');
+            Route::get('/portfolio/imageLoad', 'backoffice\PortfolioController@imageLoad')->name('admin.image-load');
 
             Route::get('/portfolio/delete/{id}', 'backoffice\PortfolioController@destroy')->name('admin.portfolio.delete');
             /* --- Contacts --- */

@@ -35,8 +35,9 @@
                 </select>
             </div>
         </div>
+        
         <div class="box-body">
-            <input type="file" name="file" class="my-pond">
+            <div id="main-image">Main</div>
         </div>
 
 
@@ -56,7 +57,40 @@
 
 
 <script>
+jQuery( document ).ready(function() {
+    function fileUploader(name,folder,maxFiles,acceptedTypes){
+        jQuery("#"+name).uploadFile({
+        url:'{{ action("backoffice\PortfolioController@imageUpload") }}',
+        fileName: name,
+        acceptFiles: acceptedTypes,
+        showPreview: true,
+        maxFileCount: maxFiles,
+        maxFileSize: '30000000',
+        formData: {
+            "_token":"{{ csrf_token() }}", 
+            "name": name,
+            "folder": folder
+        },
+        previewHeight: "100px",
+        previewWidth: "100px",
+        showDelete: true,
+        deleteCallback: function (imageName, action) {
+            jQuery.post("{{ action('backoffice\PortfolioController@imageDelete') }}", {
+                action: "delete",
+                imageName: imageName,
+                "folder": folder,
+                "name": name,
+                _token:"{{ csrf_token() }}"},
+                function (resp,textStatus, jqXHR) {
+            });
+        },
+        
+    }); 
+    }
 
+    jQuery("#main-image").onload = fileUploader('main-image','tmp',1,'image/*');
+
+});
  //Rich text editor
    tinymce.init({
       selector: "#elm1",
