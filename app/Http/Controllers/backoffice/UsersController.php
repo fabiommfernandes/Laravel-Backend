@@ -35,7 +35,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $admins = DB::table('admins')->orderBy('type')->get();
+        $admins = DB::table('admins')->where('type', '!=', '1')->orderBy('type')->get();
         $users = DB::table('users')->get();
         $allUsers = array();
 
