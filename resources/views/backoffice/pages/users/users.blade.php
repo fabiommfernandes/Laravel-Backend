@@ -50,6 +50,10 @@
                         @php
                         switch($user->type){
                             case(1):
+                                if($user->isUser == 'true'){
+                                    echo "<span class=\"label label-primary\">User</span>";
+                                    break;
+                                }
                                 echo "<span class=\"label label-success\">Super Administrator</span>";
                                 break;
                             case(2):

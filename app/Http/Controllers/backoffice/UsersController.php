@@ -55,6 +55,7 @@ class UsersController extends Controller
         if (!empty($users)) {
 
             foreach ($users as $user) {
+                $user->isUser = 'true';
                 array_push($allUsers, $user);
             }
         }
