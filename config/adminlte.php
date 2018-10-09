@@ -180,7 +180,6 @@ return [
 
         [
             'text' => 'Users',
-            'url' => 'admin/users',
             'icon' => 'user',
             'label_color' => 'success',
             'can' => 'admin',

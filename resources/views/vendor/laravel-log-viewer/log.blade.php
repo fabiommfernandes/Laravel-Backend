@@ -26,6 +26,7 @@
               <th>Line number</th>
             @endif
             <th>Content</th>
+            <th></th>
           </tr>
           </thead>
           <tbody>
@@ -33,20 +34,13 @@
           @foreach($logs as $key => $log)
             <tr data-display="stack{{{$key}}}">
               @if ($standardFormat)
-                <td class="nowrap text-{{{$log['level_class']}}}">
-                  <span class="fa fa-{{{$log['level_img']}}}" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
+                <td class="text-{{{$log['level_class']}}}" style="text-align: center;">
+                  <span class="fa fa-{{{$log['level_img']}}}" style="display: inline !important;" aria-hidden="true"></span>&nbsp;&nbsp;{{$log['level']}}
                 </td>
-                <td class="text">{{$log['context']}}</td>
+                <td class="text" style="text-align: center;" >{{$log['context']}}</td>
               @endif
-              <td class="date">{{{$log['date']}}}</td>
-              <td class="text">
-                @if ($log['stack'])
-                  <button type="button"
-                          class="float-right expand btn btn-outline-dark btn-sm mb-2 ml-2"
-                          data-display="stack{{{$key}}}">
-                    <span class="fa fa-search"></span>
-                  </button>
-                @endif
+              <td class="date" style="text-align: center; white-space: nowrap;">{{{$log['date']}}}</td>
+              <td class="text" >
                 {{{$log['text']}}}
                 @if (isset($log['in_file']))
                   <br/>{{{$log['in_file']}}}
@@ -55,6 +49,15 @@
                   <div class="stack" id="stack{{{$key}}}"
                        style="display: none; white-space: pre-wrap;">{{{ trim($log['stack']) }}}
                   </div>
+                @endif
+              </td>
+              <td class="text">
+                  @if ($log['stack'])
+                  <button type="button"
+                          class="float-right expand btn btn-outline-dark btn-sm mb-2 ml-2"
+                          data-display="stack{{{$key}}}">
+                    <span class="fa fa-search"></span>
+                  </button>
                 @endif
               </td>
             </tr>
