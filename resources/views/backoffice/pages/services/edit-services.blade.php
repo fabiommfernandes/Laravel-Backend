@@ -25,7 +25,13 @@
                 </div>
             </div>
 
-            <input type="hidden" name="id" value="{{ $service->id }}">
+            <div class="box-body">
+                <div class="input-group width100">
+                    <div id="main-image">Main Image</div>
+                </div>
+            </div>
+
+            <input type="hidden" name="id" id="id" value="{{ $service->id }}">
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -42,7 +48,58 @@
     </style>
     
     <script>
-    
+    jQuery( document ).ready(function() {
+    function fileUploader(name,folder,maxFiles,acceptedTypes,folderName){
+        jQuery("#"+name).uploadFile({
+        url:'{{ action("backoffice\ServicesController@imageUpload") }}',
+        fileName: name,
+        acceptFiles: acceptedTypes,
+        showPreview: true,
+        maxFileCount: maxFiles,
+        maxFileSize: '30000000',
+        formData: {
+            "_token":"{{ csrf_token() }}", 
+            "name": name,
+            "folder": "tmp"
+        },
+        previewHeight: "100px",
+        previewWidth: "100px",
+        showDelete: true,
+        deleteCallback: function (imageName, action) {
+            jQuery.post("{{ action('backoffice\ServicesController@imageDelete') }}", {
+                action: "delete",
+                imageName: imageName,
+                "folder": "tmp",
+                "name": name,
+                _token:"{{ csrf_token() }}"},
+                function (resp,textStatus, jqXHR) {
+            });
+        },
+        onLoad:function(obj)
+            {
+                jQuery.ajax({
+                    cache: false,
+                    url:'{{ action("backoffice\ServicesController@imageLoad") }}',
+                    dataType: "json",
+                    data: {
+                        "id": jQuery('#id').val(), 
+                        "name": folderName
+                    },
+                    success: function(data) 
+                    {
+                        for(var i=0;i<data.length;i++)
+                        { 
+                            obj.createProgress(data[i]["name"],data[i]["path"],data[i]["size"]);
+                        }
+                    }
+                });
+            }, 
+    }); 
+    }
+
+    jQuery("#main-image").onload = fileUploader('main-image','main-image',1,'image/*','main-image');
+
+});
      //Rich text editor
        tinymce.init({
           selector: "#elm1",

@@ -26,7 +26,7 @@
         </div>
 
         <div class="box-body">
-            <input type="file" name="file" class="my-pond">
+            <div id="main-image">Main Image</div>
         </div>
 
 
@@ -42,10 +42,47 @@
 .width100{
     width: 100%;
 }
+.ajax-upload-dragdrop{
+    border: 2px solid #d2d6de !important;
+    width: 100% !important;
+}
 </style>
 
 
 <script>
+jQuery( document ).ready(function() {
+    function fileUploader(name,folder,maxFiles,acceptedTypes){
+        jQuery("#"+name).uploadFile({
+        url:'{{ action("backoffice\ServicesController@imageUpload") }}',
+        fileName: name,
+        acceptFiles: acceptedTypes,
+        showPreview: true,
+        maxFileCount: maxFiles,
+        maxFileSize: '30000000',
+        formData: {
+            "_token":"{{ csrf_token() }}", 
+            "name": name,
+            "folder": folder
+        },
+        previewHeight: "100px",
+        previewWidth: "100px",
+        showDelete: true,
+        deleteCallback: function (imageName, action) {
+            jQuery.post("{{ action('backoffice\ServicesController@imageDelete') }}", {
+                action: "delete",
+                imageName: imageName,
+                "folder": folder,
+                "name": name,
+                _token:"{{ csrf_token() }}"},
+                function (resp,textStatus, jqXHR) {
+            });
+        },
+    }); 
+    }
+
+    jQuery("#main-image").onload = fileUploader('main-image','tmp',1,'image/*');
+
+});
 
  //Rich text editor
    tinymce.init({
