@@ -45,6 +45,10 @@
                 <div id="main-image">Main</div>
             </div>
 
+            <div class="box-body">
+                <div id="slider">Main</div>
+            </div>
+
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -111,6 +115,7 @@
     }
 
     jQuery("#main-image").onload = fileUploader('main-image',1,'image/*','main-image');
+    jQuery("#slider").onload = fileUploader('slider',20,'image/*','slider');
 
 
 }); 

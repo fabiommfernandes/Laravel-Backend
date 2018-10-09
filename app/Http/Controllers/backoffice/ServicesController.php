@@ -83,6 +83,14 @@ class ServicesController extends Controller
     {
         $service = DB::table('services')->where('id', '=', $id)->get()->first();
 
+        $destination = public_path() . '/images/services/tmp';
+
+        if (!File::exists($destination)) {
+            File::makeDirectory($destination, 0777, true);
+        }
+
+        $this->copyFolderToTmp('main-image', $id);
+
         return view('backoffice.pages.services.edit-services', compact('service'));
     }
 
@@ -196,5 +204,14 @@ class ServicesController extends Controller
         }
     }
 
+    public function copyFolderToTmp($folder, $id, $tmp = "")
+    {
+        $source = public_path() . '/images/services/' . $id . '/' . $folder;
+
+        if (File::files($source)) {
+            $destination = public_path() . '/images/services/tmp/' . $folder;
+            File::copyDirectory($source, $destination);
+        }
+    }
 
 }

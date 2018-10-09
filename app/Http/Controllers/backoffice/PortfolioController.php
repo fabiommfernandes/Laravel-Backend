@@ -72,6 +72,7 @@ class PortfolioController extends Controller
 
         // car main features
         $this->storeImage('main-image', $portfolioId->id);
+        $this->storeImage('slider', $portfolioId->id);
 
         //Delete tmp directory
         $source = public_path() . '/images/portfolio/tmp';
@@ -86,6 +87,21 @@ class PortfolioController extends Controller
         $services = DB::table('services')->get();
         $portfolio = DB::table('portfolio')->where('id', '=', $id)->get()->first();
 
+
+        $source = public_path() . '/images/portfolio/tmp';
+
+        File::deleteDirectory($source);
+
+        //Create frolder cars/id if not exists
+        $destination = public_path() . '/images/portfolio/tmp';
+
+        if (!File::exists($destination)) {
+            File::makeDirectory($destination, 0777, true);
+        }
+
+        $this->copyFolderToTmp('main-image', $id);
+        $this->copyFolderToTmp('slider', $id);
+
         return view('backoffice.pages.portfolio.edit-portfolio', compact('portfolio', 'services'));
     }
 
@@ -96,6 +112,7 @@ class PortfolioController extends Controller
 
         // car main features
         $this->storeImage('main-image', $request->request->get('id'));
+        $this->storeImage('slider', $request->request->get('id'));
 
         $updatedPortfolio = array(
             'title' => $request->request->get('title'),
@@ -195,6 +212,17 @@ class PortfolioController extends Controller
             }
 
             echo json_encode($data);
+        }
+    }
+
+
+    public function copyFolderToTmp($folder, $id, $tmp = "")
+    {
+        $source = public_path() . '/images/portfolio/' . $id . '/' . $folder;
+
+        if (File::files($source)) {
+            $destination = public_path() . '/images/portfolio/tmp/' . $folder;
+            File::copyDirectory($source, $destination);
         }
     }
 }

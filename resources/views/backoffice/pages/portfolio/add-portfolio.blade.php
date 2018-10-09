@@ -40,6 +40,10 @@
             <div id="main-image">Main</div>
         </div>
 
+        <div class="box-body">
+            <div id="slider">Main</div>
+        </div>
+
 
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -89,7 +93,7 @@ jQuery( document ).ready(function() {
     }
 
     jQuery("#main-image").onload = fileUploader('main-image','tmp',1,'image/*');
-
+    jQuery("#slider").onload = fileUploader('slider','tmp',20,'image/*');
 });
  //Rich text editor
    tinymce.init({
