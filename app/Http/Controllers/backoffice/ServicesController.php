@@ -36,7 +36,9 @@ class ServicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+
+
         $source = public_path() . '/images/services/tmp';
         File::deleteDirectory($source);
 

@@ -35,6 +35,13 @@ class UsersController extends Controller
      */
     public function index()
     {
+        //check for user type (if publisher redirects)
+        $user = Auth::user();
+        $type = $user->getAttributes()['type'] != '3';
+        
+        if($type == false)  return redirect('admin/');
+     
+
         $admins = DB::table('admins')->where('type', '!=', '1')->orderBy('type')->get();
         $users = DB::table('users')->get();
         $allUsers = array();

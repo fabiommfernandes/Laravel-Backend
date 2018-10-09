@@ -45,6 +45,12 @@ class LogViewerController extends Controller
      */
     public function index()
     {
+        //check for user type (if publisher redirects)
+        $user = Auth::user();
+        $type = $user->getAttributes()['type'] != '3';
+        
+        if($type == false)  return redirect('admin/');
+
         $folderFiles = [];
         if ($this->request->input('f')) {
             $this->log_viewer->setFolder(Crypt::decrypt($this->request->input('f')));
