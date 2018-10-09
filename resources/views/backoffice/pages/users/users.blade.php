@@ -11,7 +11,7 @@
 <div class="box">
     <!-- /.box-header -->
     <div class="box-body">
-      <table id="example1" class="table table-bordered table-striped table-hover">
+      <table id="table-log" class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>First name</th>
@@ -171,17 +171,20 @@
 </style>
 
 <script>
-  jQuery(function () {
-    jQuery('#example1').DataTable({
-      'paging': false,
-      'lengthChange': false,
-      'searching': false,
-      'ordering': false,
-      'info': false,
-      'autoWidth': true
-    })
-
-  })
+  jQuery(document).ready(function () {
+    jQuery('#table-log').DataTable({
+      "order": [jQuery('#table-log').data('orderingIndex'), 'desc'],
+      "stateSave": true,
+      "stateSaveCallback": function (settings, data) {
+        window.localStorage.setItem("datatable", JSON.stringify(data));
+      },
+      "stateLoadCallback": function (settings) {
+        var data = JSON.parse(window.localStorage.getItem("datatable"));
+        if (data) data.start = 0;
+        return data;
+      }
+    });
+});
 </script>
 
 @stop
