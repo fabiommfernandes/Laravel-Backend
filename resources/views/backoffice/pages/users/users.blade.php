@@ -171,20 +171,18 @@
 </style>
 
 <script>
-  jQuery(document).ready(function () {
-    jQuery('#table-log').DataTable({
-      "order": [jQuery('#table-log').data('orderingIndex'), 'desc'],
-      "stateSave": true,
-      "stateSaveCallback": function (settings, data) {
-        window.localStorage.setItem("datatable", JSON.stringify(data));
-      },
-      "stateLoadCallback": function (settings) {
-        var data = JSON.parse(window.localStorage.getItem("datatable"));
-        if (data) data.start = 0;
-        return data;
-      }
-    });
-});
+    jQuery(function () {
+        jQuery('#example1').DataTable({
+            'paging': true,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': true
+        })
+    
+    })
 </script>
+      
 
 @stop
