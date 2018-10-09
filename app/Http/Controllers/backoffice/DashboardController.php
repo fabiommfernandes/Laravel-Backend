@@ -42,6 +42,7 @@ class DashboardController extends Controller
         $time = number_format((float)$time, 0, '.', '') . 'h';
 
         $mostVisitedPages = Analytics::fetchMostVisitedPages(Period::days(7));
+  
         $browsers = Analytics::fetchTopBrowsers(Period::days(7));
 
         $devices = app('App\Services\Devices')->devices();

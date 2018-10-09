@@ -18,6 +18,12 @@
     <script src="{{ asset('js/jquery/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/uploadfile/jquery.uploadfile.min.js') }}"></script>
 
+    <script src="{{ asset('js/smoke.min.js') }}"></script>
+
+
+
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-78758034-2"></script>
     <script>
