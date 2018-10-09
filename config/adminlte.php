@@ -118,7 +118,6 @@ return [
         ],
         [
             'text' => 'Services',
-            'url' => 'admin/services',
             'icon' => 'cogs',
             'label_color' => 'success',
             'submenu' => [
@@ -135,7 +134,6 @@ return [
         ],
         [
             'text' => 'Portfolio',
-            'url' => 'admin/portfolio',
             'icon' => 'th-list',
             'label_color' => 'success',
             'submenu' => [
@@ -173,14 +171,9 @@ return [
             'can' => 'admin',
         ],
 
-   
-
-        
         'USERS',
-
         [
             'text' => 'Users',
-            'url' => 'admin/users',
             'icon' => 'user',
             'label_color' => 'success',
             'can' => 'admin',
@@ -194,8 +187,8 @@ return [
                     'url' => 'admin/users',
                 ],
             ]
- 
-        ],  
+
+        ],
 
 
     ],
