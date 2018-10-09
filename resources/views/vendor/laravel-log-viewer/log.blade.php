@@ -16,7 +16,7 @@
           Log file >50M, please download it.
         </div>
       @else
-        <table id="table-log" class="table table-striped" data-ordering-index="{{ $standardFormat ? 2 : 0 }}">
+        <table id="table-log" class="table table-bordered table-striped table-hover" data-ordering-index="{{ $standardFormat ? 2 : 0 }}">
           <thead>
           <tr>
             @if ($standardFormat)
@@ -98,16 +98,12 @@
       jQuery('#' + jQuery(this).data('display')).toggle();
     });
     jQuery('#table-log').DataTable({
-      "order": [jQuery('#table-log').data('orderingIndex'), 'desc'],
-      "stateSave": true,
-      "stateSaveCallback": function (settings, data) {
-        window.localStorage.setItem("datatable", JSON.stringify(data));
-      },
-      "stateLoadCallback": function (settings) {
-        var data = JSON.parse(window.localStorage.getItem("datatable"));
-        if (data) data.start = 0;
-        return data;
-      }
+      'paging': true,
+      'lengthChange': true,
+      'searching': true,
+      'ordering': true,
+      'info': true,
+      'autoWidth': true
     });
     jQuery('#delete-log, #clean-log, #delete-all-log').click(function () {
       return confirm('Are you sure?');

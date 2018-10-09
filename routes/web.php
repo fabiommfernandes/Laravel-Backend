@@ -55,7 +55,7 @@ Route::group(
             Route::post('/users/my-profile/{id}', 'backoffice\UsersController@storeMyProfile')->name('admin.users.store.my-profile');
 
             /* --- Logs --- */
-            Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+            Route::get('/logs', 'backoffice\LogViewerController@index');
 
 
 

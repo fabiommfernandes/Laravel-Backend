@@ -38,6 +38,7 @@
             "Tests\\": "tests/"
         }
     },
+    
     "extra": {
         "laravel": {
             "dont-discover": []
