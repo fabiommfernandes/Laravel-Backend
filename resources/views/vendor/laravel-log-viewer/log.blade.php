@@ -7,10 +7,9 @@
 @stop
 
 @section('content')
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-10 table-container">
+<div class="box">
+    <!-- /.box-header -->
+    <div class="box-body table-container">
       @if ($logs === null)
         <div>
           Log file >50M, please download it.
@@ -86,10 +85,12 @@
         @endif
       </div>
     </div>
+    <!-- /.box-body -->
   </div>
+  <!-- /.box -->
 </div>
-
-
+<!-- /.col -->
+</div>
 
 
 <script>

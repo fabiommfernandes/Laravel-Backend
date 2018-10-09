@@ -26,8 +26,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('admin', function ($user) {
-            if($user->getAttributes()['type'] != '3'   )
-            return true;
+            if($user->getAttributes()['type'] != '3'   ){
+                return true;
+            }else{
+                return null;
+            }
+           
         });
     }
 }
