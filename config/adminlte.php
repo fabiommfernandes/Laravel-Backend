@@ -169,14 +169,21 @@ return [
             'url' => 'admin/logs',
             'icon' => 'file-text',
             'label_color' => 'success',
+            'can' => 'admin',
         ],
 
+   
+
+
+        
         'USERS',
+
         [
             'text' => 'Users',
             'url' => 'admin/users',
             'icon' => 'user',
             'label_color' => 'success',
+            'can' => 'admin',
             'submenu' => [
                 [
                     'text' => 'Add new',
@@ -187,7 +194,9 @@ return [
                     'url' => 'admin/users',
                 ],
             ]
-        ],
+ 
+        ],  
+
 
     ],
 
