@@ -164,6 +164,12 @@ return [
             'icon' => 'envelope',
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Logs',
+            'url' => 'admin/logs',
+            'icon' => 'file-text',
+            'label_color' => 'success',
+        ],
 
         'USERS',
         [
