@@ -14,20 +14,17 @@
     <form id="form" enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\ServicesController@store') }}" >
         {{ csrf_field() }}  
         <div class="box-body">
-            <div class="input-group">
+            <div class="form-group input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" name="title" placeholder="Title"  data-parsley-required="true" data-parsley-errors-container="#title-error" required>
+                <input type="text" class="form-control" name="title" placeholder="Title" required>
             </div>
-            <span id="title-error"></span>
-
         </div>
   
 
         <div class="box-body">
             <div class="input-group width100">
-                <textarea id="elm1" name="description" id="description" class="form-control" data-parsley-errors-container="#description-error" required></textarea>
+                <textarea id="elm1" name="description" id="description" class="form-control" ></textarea>
             </div>
-            <span id="description-error"></span>
         </div>
 
         <div class="box-body">
@@ -52,28 +49,11 @@
     width: 100% !important;
 }
 
-.container {
-  margin-top: 20px;
-}
-
-.panel-heading {
-  font-size: larger;
-}
-
-
-
-/**
- * Error color for the validation plugin
- */
-
-.parsley-errors-list {
-  color: #e74c3c;
-}
 </style>
 
 
 <script>
-$('#form').parsley();
+
 
 jQuery( document ).ready(function() {
     function fileUploader(name,folder,maxFiles,acceptedTypes){

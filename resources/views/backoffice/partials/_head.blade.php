@@ -18,7 +18,6 @@
     <script src="{{ asset('js/jquery/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/uploadfile/jquery.uploadfile.min.js') }}"></script>
 
-    <script src="{{ asset('js/smoke.min.js') }}"></script>
 
 
 
