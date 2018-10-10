@@ -11,5 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.sass('resources/sass/backoffice/style.scss', 'public/css/backoffice/style.css', {
+    outputStyle: 'compressed'
+})
+
+
+mix.scripts([
+    'resources/js/backoffice/scripts.js',
+], 'public/js/backoffice/scripts.js');

@@ -85,82 +85,7 @@
 
 {!! Toastr::message() !!}
 <style>
-.red-square{
-    background-color: #dd4b39;
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    color: white;
-    border-radius: 3px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-color: #d73925;
-}
-.red-square:hover{
-  background: #d73925;
-}
 
-.blue-square{
-    background-color: #337ab7;
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    color: white;
-    border-radius: 3px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-color: #337ab7;
-}
-.blue-square:hover{
-  background: #367fa9;
-}
-
-.expand{
-  margin-top: 15px;
-}
-.fa-level-down{
-  color: #337ab7;
-}
-.right0{
-  position: absolute;
-  right: 30px;
-}
-
-.text-center{
-    font-size: 12px;
-}
 </style>
 
 <script>
@@ -178,14 +103,10 @@ function  enableInputs(){
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].disabled = false;
         }
-
         jQuery('.submit').css('display','block');
         jQuery('.passwordinput').css('display','block');
-
     }
-
 }
-
 </script>
 
 @stop

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('js/jvectormap/jquery-jvectormap.css') }}" type="text/css" media="screen"/>
     <link href="{{ asset('css/uploadfile/uploadfile.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/jquery/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/backoffice/style.css') }}">
 
     <script src="{{ asset('js/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('js/datatables.net/js/jquery.dataTables.min.js') }}"></script>
@@ -17,7 +18,7 @@
     <script src="{{ asset('js/jvectormap/tests/assets/jquery-jvectormap-world-mill.js') }}"></script>
     <script src="{{ asset('js/jquery/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/uploadfile/jquery.uploadfile.min.js') }}"></script>
-
+    <script src="{{ asset('js/backoffice/scripts.js') }}"></script>
     <!-- TOASTR -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
