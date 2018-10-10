@@ -42,6 +42,7 @@
   </div>
 </form>
 
+{!! Toastr::message() !!}
 
 <style>
 

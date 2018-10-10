@@ -83,6 +83,7 @@
     </div>
 </form>
 
+{!! Toastr::message() !!}
 <style>
 .red-square{
     background-color: #dd4b39;

@@ -13,6 +13,7 @@ use Spatie\Analytics\Period;
 use Lava;
 use App\Admin;
 use App\User;
+use Toastr;
 
 
 class UsersController extends Controller
@@ -109,6 +110,7 @@ class UsersController extends Controller
             }
         }*/
 
+        Toastr::success('User created with success.', 'Users', ["positionClass" => "toast-top-center"]);
 
         return Redirect::to('admin/users');
     }
@@ -145,8 +147,9 @@ class UsersController extends Controller
         $user = Auth::User();
         $current = $user->getAttributes();
 
-        return \App::make('redirect')->back();
+        Toastr::success('Profile edited with success.', 'Users', ["positionClass" => "toast-top-center"]);
 
+        return Redirect::to('admin/users');
     }
 
 }

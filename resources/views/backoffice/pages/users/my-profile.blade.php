@@ -71,7 +71,7 @@
     
 </form>
 
-
+{!! Toastr::message() !!}
 <style>
 
     

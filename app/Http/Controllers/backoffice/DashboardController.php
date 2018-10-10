@@ -9,7 +9,7 @@ use Auth;
 use Analytics;
 use Spatie\Analytics\Period;
 use Lava;
-
+use Toastr;
 
 class DashboardController extends Controller
 {

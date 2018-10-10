@@ -18,9 +18,9 @@
     <script src="{{ asset('js/jquery/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/uploadfile/jquery.uploadfile.min.js') }}"></script>
 
-
-
-
+    <!-- TOASTR -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
     <!-- Global site tag (gtag.js) - Google Analytics -->

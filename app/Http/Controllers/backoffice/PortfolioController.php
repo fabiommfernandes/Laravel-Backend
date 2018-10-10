@@ -13,6 +13,7 @@ use Analytics;
 use Spatie\Analytics\Period;
 use Lava;
 use App\Portfolio;
+use Toastr;
 
 
 class PortfolioController extends Controller
@@ -79,6 +80,9 @@ class PortfolioController extends Controller
 
         File::deleteDirectory($source);
 
+        Toastr::success('Project created with success.', 'Portfolio', ["positionClass" => "toast-top-center"]);
+
+
         return Redirect::to('admin/portfolio');
     }
 
@@ -126,6 +130,9 @@ class PortfolioController extends Controller
 
         DB::table('portfolio')->where('id', $request->request->get('id'))->update($updatedPortfolio);
 
+        Toastr::success('Project edited with success.', 'Portfolio', ["positionClass" => "toast-top-center"]);
+
+
         return Redirect::to('admin/portfolio');
 
     }
@@ -133,6 +140,9 @@ class PortfolioController extends Controller
     public function destroy($id)
     {
         $portfolio = Portfolio::destroy($id);
+
+        Toastr::success('Project deleted with success.', 'Portfolio', ["positionClass" => "toast-top-center"]);
+
 
         return Redirect::to('admin/portfolio');
 

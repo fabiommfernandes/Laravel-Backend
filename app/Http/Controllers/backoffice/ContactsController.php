@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\backoffice;
 
-
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Spatie\Analytics\Period;
 use Auth;
 use Analytics;
-use Spatie\Analytics\Period;
 use Lava;
+use Toastr;
+
 
 
 class ContactsController extends Controller
@@ -46,6 +47,8 @@ class ContactsController extends Controller
 
         DB::table('contacts')->where('id', $_POST['id'])
             ->update($updatedContacts);
+
+        Toastr::success('Contact info edited with success.', 'Contacts', ["positionClass" => "toast-top-center"]);
 
         return Redirect::to('admin/contacts');
 

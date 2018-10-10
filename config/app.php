@@ -212,7 +212,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
-        'LaravelLogViewer' => Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class
+        'LaravelLogViewer' => Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class
+
 
     ],
 

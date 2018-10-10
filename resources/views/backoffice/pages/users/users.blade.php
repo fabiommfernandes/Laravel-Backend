@@ -90,6 +90,7 @@
 <!-- /.col -->
 </div>
 
+{!! Toastr::message() !!}
 
 <style>
 .red-square{

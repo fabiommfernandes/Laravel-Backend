@@ -11,7 +11,7 @@ use Auth;
 use Analytics;
 use Spatie\Analytics\Period;
 use Lava;
-
+use Toastr;
 
 class PrivacyController extends Controller
 {
@@ -46,6 +46,7 @@ class PrivacyController extends Controller
         DB::table('policiestranslations')->where('policiesId', $request->request->get('id'))
             ->update($updatedPrivacy);
 
+        Toastr::success('Privacy Policy edited with success.', 'Privacy Policy', ["positionClass" => "toast-top-center"]);
 
         return Redirect::to('admin/privacy');
     }

@@ -14,6 +14,7 @@ use Spatie\Analytics\Period;
 use Lava;
 use App\Services;
 use App\Portfolio;
+use Toastr;
 
 
 
@@ -76,6 +77,7 @@ class ServicesController extends Controller
 
         File::deleteDirectory($tmpFolder);
 
+        Toastr::success('Service created with success.', 'Services', ["positionClass" => "toast-top-center"]);
 
         return Redirect::to('admin/services');
     }
@@ -116,6 +118,9 @@ class ServicesController extends Controller
 
         DB::table('services')->where('id', $request->request->get('id'))->update($updatedService);
 
+        Toastr::success('Service edited with success.', 'Services', ["positionClass" => "toast-top-center"]);
+
+
         return Redirect::to('admin/services');
 
     }
@@ -124,6 +129,9 @@ class ServicesController extends Controller
     {
         $portfolio = Portfolio::where('servicesId', '=', $id)->delete();
         $services = Services::destroy($id);
+
+        Toastr::success('Service deleted with success.', 'Services', ["positionClass" => "toast-top-center"]);
+
 
         return Redirect::to('admin/services');
 
