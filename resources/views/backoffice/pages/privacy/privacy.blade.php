@@ -15,7 +15,7 @@
 </div>
 
 
-<form enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\PrivacyController@update') }}">
+<form id="form" enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\PrivacyController@update') }}">
   {{ csrf_field() }}  
   <div class="box scroll">
     <!-- /.box-header -->
@@ -43,5 +43,31 @@
 </form>
 
 {!! Toastr::message() !!}
+
+<script>
+
+
+function enableInputs(){
+    if(jQuery('.submit').is(':visible')){
+
+        jQuery('.descriptionFirst').css('display','block');
+        jQuery('.scroll').css('overflow', 'scroll');
+        jQuery('.scroll').css('height', '500px');
+        jQuery('.descriptionShow').css('display','none');
+        jQuery('.submit').css('display','none');
+
+
+
+    }else{
+        jQuery('.descriptionFirst').css('display','none');
+        jQuery('.scroll').css('overflow', 'hidden');
+        jQuery('.scroll').css('height', 'auto');
+        jQuery('.descriptionShow').css('display','block');
+        jQuery('.submit').css('display','block');
+    }
+
+}
+
+</script>
 
 @stop

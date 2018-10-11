@@ -1,6 +1,12 @@
 //Rich text editor
 tinymce.init({
     selector: "#elm1",
+    setup: function(editor) {
+        editor.on('keyup', function(e) {
+            // Revalidate the hobbies field
+            jQuery('#form').bootstrapValidator('revalidate', 'hobbies');
+        });
+    },
     theme: "modern",
     plugins: [
         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
