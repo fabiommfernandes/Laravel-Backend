@@ -16,24 +16,27 @@
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" name="title" placeholder="Title">
+                <input type="text" class="form-control" name="title" placeholder="Title" required="" data-parsley-errors-container="#errorTitle" data-parsley-error-message="Title is required">
             </div>
+            <div id="errorTitle" name="errordiv1" class="error-span"></div>
         </div>
         <div class="box-body">
             <div class="input-group width100">
-                <textarea id="elm1" name="description" id="description" class="form-control"></textarea>
+                <textarea id="elm1" name="description" id="description" class="form-control"  required="" data-parsley-errors-container="#errorDescription" data-parsley-error-message="Description is required"  aria-hidden="true" data-parsley-id="5609"></textarea>
             </div>
+            <div id="errorDescription" name="errordiv1" class="error-span"></div>
         </div>
 
         <div class="box-body">
             <div class="input-group width100">
-                <select class="form-control select2" id="servicesId" name="servicesId" style="width: 100%;">
+                <select class="form-control select2" id="servicesId" name="servicesId" style="width: 100%;" required="" data-parsley-errors-container="#errorService" data-parsley-error-message="Please choose a service">
                     <option selected="selected" disabled>Choose one option</option>
                     @foreach($services as $service)
                     <option value="{{ $service->id }}">{{ $service->title }}</option>
                     @endforeach
                 </select>
             </div>
+            <div id="errorService" name="errordiv1" class="error-span"></div>
         </div>
         
         <div class="box-body">
@@ -60,6 +63,8 @@
 
 <script>
 jQuery( document ).ready(function() {
+    jQuery("form").parsley();
+
     function fileUploader(name,folder,maxFiles,acceptedTypes){
         jQuery("#"+name).uploadFile({
         url:'{{ action("backoffice\PortfolioController@imageUpload") }}',

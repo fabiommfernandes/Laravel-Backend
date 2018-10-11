@@ -16,18 +16,20 @@
             <div class="box-body">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                    <input type="text" class="form-control" name="title" value="{{ $portfolio->title }}">
+                    <input type="text" class="form-control" name="title" value="{{ $portfolio->title }}" required="" data-parsley-errors-container="#errorTitle" data-parsley-error-message="Title is required">
                 </div>
+                <div id="errorTitle" name="errordiv1" class="error-span"></div>
             </div>
             <div class="box-body">
                 <div class="input-group width100">
-                    <textarea id="elm1" name="description" id="description" class="form-control" required>{{ $portfolio->description }}</textarea>
+                    <textarea id="elm1" name="description" id="description" class="form-control" required="" data-parsley-errors-container="#errorDescription" data-parsley-error-message="Description is required"  aria-hidden="true" data-parsley-id="5609">{{ $portfolio->description }}</textarea>
                 </div>
+                <div id="errorDescription" name="errordiv1" class="error-span"></div>
             </div>
 
             <div class="box-body">
                 <div class="input-group width100">
-                    <select class="form-control select2" id="servicesId" name="servicesId" style="width: 100%;">
+                    <select class="form-control select2" id="servicesId" name="servicesId" style="width: 100%;" required="" data-parsley-errors-container="#errorService" data-parsley-error-message="Please choose a service">
                         @foreach($services as $service)
                             @if($portfolio->servicesId == $service->id)
                                 <option selected value="{{ $service->id }}"> {{ $service->title }} </option>
@@ -37,6 +39,7 @@
                         @endforeach
                     </select>
                 </div>
+                <div id="errorService" name="errordiv1" class="error-span"></div>
             </div>
 
             <input type="hidden" name="id" id="id" value="{{ $portfolio->id }}">
@@ -56,8 +59,10 @@
     </div>
     
 
-    <script>
-   jQuery( document ).ready(function() {
+<script>
+jQuery( document ).ready(function() {
+    jQuery("form").parsley();
+
     function fileUploader(name,folder,maxFiles,acceptedTypes,folderName){
 
         jQuery("#"+name).uploadFile({

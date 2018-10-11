@@ -81,10 +81,5 @@ jQuery( document ).ready(function() {
 
 </script>
 
-<style>
-.error-span{
-    color: red;
 
-}
-</style>
 @stop

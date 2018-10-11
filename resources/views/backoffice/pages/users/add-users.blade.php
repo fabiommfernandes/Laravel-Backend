@@ -11,27 +11,30 @@
     <div class="box-header with-border">
         <h3 class="box-title">Add new user</h3>
     </div>
-    <form enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\UsersController@store') }}">
+    <form id="form" enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\UsersController@store') }}">
         {{ csrf_field() }}  
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" name="name" placeholder="First name" required>
+                <input type="text" class="form-control" name="name" placeholder="First name" required="" data-parsley-errors-container="#errorFirstName" data-parsley-error-message="First name is required">
             </div>
+            <div id="errorFirstName" name="errordiv1" class="error-span"></div>
         </div>
 
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="text" class="form-control" name="lastname" placeholder="Last name" required>
+                <input type="text" class="form-control" name="lastname" placeholder="Last name" required="" data-parsley-errors-container="#errorLastName" data-parsley-error-message="Last name is required">
             </div>
+            <div id="errorLastName" name="errordiv1" class="error-span"></div>
         </div>
 
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                <input type="email" class="form-control" name="email" placeholder="Email" required="" data-parsley-errors-container="#errorEmail" data-parsley-error-message="Email is required">
             </div>
+            <div id="errorEmail" name="errordiv1" class="error-span"></div>
         </div>
 
         <div class="box-body">
@@ -40,7 +43,7 @@
                 <!---<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>-->
                 <div clas="row">
                     <div class="col-md-10 padding0">
-                        <input type="password" class="form-control"  name="password" id="password" placeholder="Password" required>
+                        <input type="password" class="form-control"  name="password" id="password" placeholder="Password" required="" data-parsley-errors-container="#errorPassword" data-parsley-error-message="Password is required">
                         <i class="fa fa-eye show-hide-password" id="show-hide-password"></i>
                     </div>
                     <div class="col-md-2">
@@ -48,7 +51,7 @@
                     </div>
                 </div>
             </div>  
-        
+        <div id="errorPassword" name="errordiv1" class="error-span"></div>
         <div id="password-strength-text"></div>
 
         </div>
@@ -56,13 +59,14 @@
         <div class="box-body">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                <select class="form-control select2" name="type" id="type" style="width: 100%;">
+                <select class="form-control select2" name="type" id="type" style="width: 100%;"  required="" data-parsley-errors-container="#errorRole" data-parsley-error-message="Role is required">
                     <option selected="selected" disabled>Choose one option</option>
                     <option value="2">Administrator</option>
                     <option value="3">Publisher</option>
                     <option value="4">User</option>
                 </select>
             </div>
+            <div id="errorRole" name="errordiv1" class="error-span"></div>
         </div>
 
         <div class="box-footer">
