@@ -94,6 +94,9 @@ function randomString() {
 
 
 jQuery( document ).ready(function() {
+
+    jQuery("form").parsley();
+
     jQuery( "#show-hide-password" ).click(function() {
         if(jQuery('#password')[0].type == 'password'){
             jQuery('#password')[0].type = "text";
