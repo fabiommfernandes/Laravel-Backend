@@ -69,7 +69,6 @@
         </div>
     </section>
 
-    <!-- TOASTR (NEEDED?????) -->
 {!! Toastr::message() !!}
 
 

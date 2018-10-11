@@ -3,18 +3,13 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>My Profile</h1>
+    <h1>Edit user</h1>
 @stop
 
 @section('content')
 
-<div class="box-header">
-    <a onclick="enableInputs()"> 
-        <i class="fa fa-edit blue-square"></i> 
-    </a>
-</div>
 
-<form enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\UsersController@storeMyProfile', ['id' => $current['id'] ]) }}">
+<form enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\UsersController@update') }}">
     {{ csrf_field() }}  
     <div class="box">
         <!-- /.box-header -->
@@ -23,22 +18,25 @@
             <div class="box-body">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                    <input type="text" class="form-control" name="name" value="{{ $current['firstName'] }}" disabled required>
+                    <input type="text" class="form-control" name="name" value="{{ $user->firstName }}" required>
                 </div>
             </div>
 
             <div class="box-body">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                    <input type="text" class="form-control" name="lastname" value="{{ $current['lastName'] }}" disabled required>
+                    <input type="text" class="form-control" name="lastname" value="{{ $user->lastName }}" required>
                 </div>
             </div>
 
-            <input type="text" class="form-control" name="email" value="{{ $user->getAttributes()['email'] }}" style="display: none;">
-            <input type="text" class="form-control" name="id" value="{{ $user->getAttributes()['id'] }}" style="display: none;">
-            <input type="text" class="form-control" name="type" value="{{ $user->getAttributes()['type'] }}" style="display: none;">
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <input type="email" class="form-control" name="email" value="{{ $user->email }}" required>
+                </div>
+            </div>
 
-            <div class="box-body passwordinput" style="display: none;">
+            <div class="box-body">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-repeat"></i></span>
                     <!---<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>-->
@@ -51,13 +49,27 @@
                             <span class="btn btn-primary btn-flat" id="generate" onclick="randomString();" value="Generate password" >Generate password</span>  
                         </div>
                     </div>
-                </div>  
-            
-            <div id="password-strength-text"></div>
-    
+                </div>      
+                <div id="password-strength-text"></div>
             </div>
 
-            <div class="box-footer submit" style="display: none;">
+            <div class="box-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                    <select class="form-control select2" name="type" id="type" style="width: 100%;">
+                        <option selected="selected" disabled>Choose one option</option>
+                        <option value="2">Administrator</option>
+                        <option value="3">Publisher</option>
+                        <option value="4">User</option>
+                    </select>
+                </div>
+            </div>
+
+            <input type="hidden" name="oldType" value="{{ $user->type }}">
+            <input type="hidden" class="form-control" name="id" value="{{ $user->id }}">
+
+
+            <div class="box-footer submit">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
@@ -93,7 +105,6 @@ function randomString() {
 
 }
 
-
 jQuery( document ).ready(function() {
     jQuery( "#show-hide-password" ).click(function() {
         if(jQuery('#password')[0].type == 'password'){
@@ -123,8 +134,6 @@ password.addEventListener('input', function()
 {
     var val = password.value;
     var result = zxcvbn(val);
-	
-   
     // Update the text indicator
     if(val !== "") {
         text.innerHTML = "<div id='feedback-bubble'><strong>Password strength</strong>: " + strength[result.score] + "<span class='feedback'>" + result.feedback.warning + " " + result.feedback.suggestions + "</span></div>"; 
@@ -133,41 +142,6 @@ password.addEventListener('input', function()
         text.innerHTML = "";
     }
 });
-
-function enableInputs(){
-    if(jQuery('.submit').is(':visible')){
-        var inputs = document.getElementsByTagName("input");
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = true;
-        }
-        jQuery('.submit').css('display','none');
-        jQuery('.passwordinput').css('display','none');
-
-    }else{
-        var inputs = document.getElementsByTagName("input");
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = false;
-        }
-
-        jQuery('.submit').css('display','block');
-        jQuery('.passwordinput').css('display','block');
-
-    }
-
-}
-
-
-    jQuery(function () {
-        jQuery('#example1').DataTable({
-        'paging': false,
-        'lengthChange': false,
-        'searching': false,
-        'ordering': false,
-        'info': false,
-        'autoWidth': true
-        })
-
-    })
 </script>
 
 @stop

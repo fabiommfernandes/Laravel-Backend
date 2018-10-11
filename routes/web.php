@@ -57,8 +57,11 @@ Route::group(
             Route::get('/users', 'backoffice\UsersController@index')->name('admin.users');
             Route::get('/users/create', 'backoffice\UsersController@create')->name('admin.users.create');
             Route::post('/users/create', 'backoffice\UsersController@store')->name('admin.users.create.submit');
+            Route::get('/users/edit/{id}/{userType}', 'backoffice\UsersController@edit')->name('admin.user.edit');
+            Route::post('/users', 'backoffice\UsersController@update')->name('admin.users.edit.submit');
             Route::get('/users/my-profile/{id}', 'backoffice\UsersController@myProfile')->name('admin.users.my-profile');
             Route::post('/users/my-profile/{id}', 'backoffice\UsersController@storeMyProfile')->name('admin.users.store.my-profile');
+            Route::get('/users/delete/{id}/{userType}', 'backoffice\UsersController@destroy')->name('admin.user.delete');
 
             /* --- Logs --- */
             Route::get('/logs', 'backoffice\LogViewerController@index');
