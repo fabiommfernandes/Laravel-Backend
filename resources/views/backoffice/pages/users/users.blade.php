@@ -30,11 +30,11 @@
                         {{ $user->firstName }}
                         <div class="collapse expand" id="{{ $i }}">
                             <div class="card card-body">
-                                <a href="{{ route('admin.services.edit', ['id' => $user->id ])}}"> 
+                                <a href="{{ route('admin.user.edit', ['id' => $user->id, 'userType' => $user->type ])}}"> 
                                     <i class="fa fa-edit blue-square"></i> 
                                 </a> 
                                 
-                                <a href="{{ route('admin.services.delete', ['id' => $user->id ])}}" onclick="return confirm('When delting this u')"> 
+                                <a href="{{ route('admin.user.delete', ['id' => $user->id, 'userType' => $user->type])}}" onclick="return confirm('When delting this u')"> 
                                     <i class="fa fa-close red-square"></i> 
                                 </a> 
                             </div>

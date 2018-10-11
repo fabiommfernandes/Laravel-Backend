@@ -39,9 +39,9 @@ class UsersController extends Controller
         //check for user type (if publisher redirects)
         $user = Auth::user();
         $type = $user->getAttributes()['type'] != '3';
-        
-        if($type == false)  return redirect('admin/');
-     
+
+        if ($type == false) return redirect('admin/');
+
 
         $admins = DB::table('admins')->where('type', '!=', '1')->orderBy('type')->get();
         $users = DB::table('users')->get();
@@ -152,4 +152,49 @@ class UsersController extends Controller
         return Redirect::to('admin/users');
     }
 
+    public function edit($id, $userType)
+    {
+        if ($userType == 4) {
+            $user = DB::table('users')->where('id', $id)->get()->first();
+        } else {
+            $user = DB::table('admins')->where('id', $id)->get()->first();
+        }
+        return view('backoffice.pages.users.edit-users', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        $updatedUser = array(
+            'firstName' => $request->request->get('name'),
+            'lastName' => $request->request->get('lastname'),
+            'email' => $request->request->get('email'),
+            'password' => bcrypt($request->request->get('password')),
+            'type' => $request->request->get('type')
+        );
+
+        if ($request->request->get('type') == 4) {
+            DB::table('users')->where('id', $request->request->get('id'))
+                ->update($updatedUser);
+        } else {
+            DB::table('admins')->where('id', $request->request->get('id'))
+                ->update($updatedUser);
+        }
+
+        Toastr::success('User was edited with success', 'Users', ["positionClass" => "toast-top-center"]);
+
+        return Redirect::to('admin/users');
+    }
+
+    public function destroy($id, $userType)
+    {
+        if ($userType == '4') {
+            $user = User::destroy($id);
+        } else {
+            $admin = Admin::destroy($id);
+        }
+
+        Toastr::success('User was deleted with success', 'Users', ["positionClass" => "toast-top-center"]);
+
+        return Redirect::to('admin/users');
+    }
 }
