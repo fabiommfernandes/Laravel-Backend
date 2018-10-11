@@ -89,24 +89,7 @@
 </style>
 
 <script>
-function  enableInputs(){
-    if(jQuery('.submit').is(':visible')){
-        var inputs = document.getElementsByTagName("input");
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = true;
-        }
-        jQuery('.submit').css('display','none');
-        jQuery('.passwordinput').css('display','none');
 
-    }else{
-        var inputs = document.getElementsByTagName("input");
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].disabled = false;
-        }
-        jQuery('.submit').css('display','block');
-        jQuery('.passwordinput').css('display','block');
-    }
-}
 </script>
 
 @stop
