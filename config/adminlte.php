@@ -14,7 +14,7 @@ return [
     |
  */
 
-    'title' => 'Backoffice V2',
+    'title' => 'Ideal Ambulances',
 
     'title_prefix' => '',
 
@@ -31,9 +31,9 @@ return [
     |
      */
 
-    'logo' => '<b>Back</b>Office V2',
+    'logo' => '<b>Ideal</b> Ambulances',
 
-    'logo_mini' => '<b>B</b>O',
+    'logo_mini' => '<b>I</b>A',
 
     /*
     |--------------------------------------------------------------------------
@@ -133,21 +133,20 @@ return [
             ]
         ],
         [
-            'text' => 'Portfolio',
-            'icon' => 'th-list',
+            'text' => 'Main slider',
+            'icon' => 'image',
             'label_color' => 'success',
             'submenu' => [
                 [
                     'text' => 'Add new',
-                    'url' => 'admin/portfolio/create',
+                    'url' => 'admin/main-slider/create',
 
                 ],
                 [
                     'text' => 'View all',
-                    'url' => 'admin/portfolio',
+                    'url' => 'admin/main-slider',
                 ],
             ]
-
         ],
 
         'SETTINGS',

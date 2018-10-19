@@ -43,6 +43,17 @@ Route::group(
             Route::post('/portfolio/imageUpload', 'backoffice\PortfolioController@imageUpload')->name('admin.image-upload');
             Route::post('/portfolio/imageDelete', 'backoffice\PortfolioController@imageDelete')->name('admin.image-delete');
             Route::get('/portfolio/imageLoad', 'backoffice\PortfolioController@imageLoad')->name('admin.image-load');
+            
+            /* Main slider*/
+            Route::get('/main-slider', 'backoffice\MainSliderController@index')->name('admin.main-slider');
+            Route::get('/main-slider/create', 'backoffice\MainSliderController@create')->name('admin.main-slider.create');
+            Route::post('/main-slider/create', 'backoffice\MainSliderController@store')->name('admin.main-slider.create.submit');
+            Route::get('/main-slider/edit/{id}', 'backoffice\MainSliderController@edit')->name('admin.main-slider.edit');
+            Route::post('/main-slider/edit', 'backoffice\MainSliderController@update')->name('admin.main-slider.update');
+            Route::get('/main-slider/delete/{id}', 'backoffice\MainSliderController@destroy')->name('admin.main-slider.delete');
+            Route::post('/main-slider/imageUpload', 'backoffice\MainSliderController@imageUpload')->name('admin.image-upload');
+            Route::post('/main-slider/imageDelete', 'backoffice\MainSliderController@imageDelete')->name('admin.image-delete');
+            Route::get('/main-slider/imageLoad', 'backoffice\MainSliderController@imageLoad')->name('admin.image-load');
 
             Route::get('/portfolio/delete/{id}', 'backoffice\PortfolioController@destroy')->name('admin.portfolio.delete');
             /* --- Contacts --- */
