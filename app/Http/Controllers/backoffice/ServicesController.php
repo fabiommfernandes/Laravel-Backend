@@ -132,22 +132,6 @@ class ServicesController extends Controller
 
         DB::table('services_translations')->where([['servicesId', '=', $request->request->get('id')], ['languageId', '=', '1']])->update($updatedServicePt);
         
-        // update artist EN
-        $updatedServiceEn = array(
-            'title' => $request->request->get('title-en'),
-            'description' => $request->request->get('description-en'),
-        );
-
-        DB::table('services_translations')->where([['servicesId', '=', $request->request->get('id')], ['languageId', '=', '2']])->update($updatedServiceEn);
-        
-        // update artist FR
-        $updatedServiceFr = array(
-            'title' => $request->request->get('title-fr'),
-            'description' => $request->request->get('description-fr'),
-        );
-
-        DB::table('services_translations')->where([['servicesId', '=', $request->request->get('id')], ['languageId', '=', '3']])->update($updatedServiceFr);
-        
         //get filename
         $currentImg = File::allFiles(public_path() . $this->ServiceImage)[0]->getRelativePathname();
         //update sponsor with img path
@@ -162,7 +146,10 @@ class ServicesController extends Controller
 
     public function destroy($id)
     {
-        $portfolio = Portfolio::where('servicesId', '=', $id)->delete();
+        //delete translations
+        ServicesTranslations::where('servicesId', '=', $id)->delete();
+        
+        //delete service
         $services = Services::destroy($id);
 
         Toastr::success('Service deleted with success.', 'Services', ["positionClass" => "toast-top-center"]);
