@@ -15,7 +15,7 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('image')->default('images/pikashook.png');
+            $table->string('main_image')->default('images/pikashook.png');
             $table->timestamps();
         });
     }

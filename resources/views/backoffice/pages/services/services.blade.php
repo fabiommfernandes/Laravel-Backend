@@ -17,22 +17,29 @@
       <table id="example1" class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Title</th>
             <th>Description</th>
+            <th>Image</th>
           </tr>
         </thead>
         <tbody>
             @foreach ($services as $service)
               <tr data-toggle="collapse" data-target="#{{ $service->id }}" role="button">
                   <td>
-                      {{ $service->title }}
+                    @php 
+                      if( $servicesTranslations->where('servicesId', $service->id)->where('languageId', '1')->first() ){
+                        echo $servicesTranslations->where('servicesId', $service->id)->where('languageId', '1')->first()->title;
+                      }else{
+                        echo "N/A";
+                      }
+                    @endphp
                       <div class="collapse expand" id="{{ $service->id }}">
                           <div class="card card-body">
                               <a href="{{ route('admin.services.edit', ['id' => $service->id ])}}"> 
                                 <i class="fa fa-edit blue-square"></i> 
                               </a> 
                               
-                              <a href="{{ route('admin.services.delete', ['id' => $service->id ])}}" onclick="return confirm('When delting this u')"> 
+                              <a href="{{ route('admin.services.delete', ['id' => $service->id ])}}" onclick="return confirm('Are you sure you want to delete this service?')"> 
                                 <i class="fa fa-close red-square"></i> 
                               </a> 
                           </div>
@@ -50,10 +57,16 @@
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title">{{ $service->title }}</h4>
+                              <h4 class="modal-title">Description</h4>
                             </div>
                             <div class="modal-body">
-                            {!! $service->description !!}
+                              @php 
+                                if( $servicesTranslations->where('servicesId', $service->id)->where('languageId', '1')->first() ){
+                                  echo $servicesTranslations->where('servicesId', $service->id)->where('languageId', '1')->first()->description;
+                                }else{
+                                  echo "N/A";
+                                }
+                              @endphp
                             </div>
                           </div>
                           <!-- /.modal-content -->
@@ -64,14 +77,27 @@
                       <i class="fa fa-level-down right0" ></i>
 
                   </td>
+
+                  <td>
+                    @php
+                    if( $service->main_image ) {
+                        echo '<img src="'. $service->main_image .'" height="100" width="100">';
+
+                    }else{
+                        echo '<img src="/images/news/no-image/icon.png" height="100" width="100">';
+                    }
+                    @endphp
+                    <!-- show logo thumbnail -->
+                </td>
               </tr>
             @endforeach
         </tbody>
         <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-          </tr>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+              </tr>
         </tfoot>
       </table>
     </div>

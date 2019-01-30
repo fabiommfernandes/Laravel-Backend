@@ -3,55 +3,55 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Services</h1>
+    <h1>Serviços</h1>
 @stop
 
 @section('content')
 <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Add new service</h3>
-        </div>
-        <form id="form" enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\ServicesController@update') }}">
-            {{ csrf_field() }}  
-            <div class="box-body">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
-                    <input type="text" class="form-control" name="title" value="{{ $service->title }}"  required="" data-parsley-errors-container="#errorTitle" data-parsley-error-message="Title is required">
-                </div>
-                <div id="errorTitle" name="errordiv1" class="error-span"></div>
-            </div>
-            <div class="box-body">
-                <div class="input-group width100">
-                    <textarea id="elm1" name="description" id="description" class="form-control" required="" data-parsley-errors-container="#errorDescription" data-parsley-error-message="Description is required"  aria-hidden="true" data-parsley-id="5609">{{ $service->description }}</textarea>
-                </div>
-                <div id="errorDescription" name="errordiv1" class="error-span"></div>
-            </div>
-
-            <div class="box-body">
-                <div class="input-group width100">
-                    <div id="main-image">Main Image</div>
-                </div>
-            </div>
-
-            <input type="hidden" name="id" id="id" value="{{ $service->id }}">
-
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+    <div class="box-header with-border">
+        <h3 class="box-title">Editar serviço</h3>
     </div>
+    <form id="form" class="tab-content" data-toggle="validator" enctype='multipart/form-data' role="form" method="post" action="{{ action('backoffice\ServicesController@update') }}" >
+        {{ csrf_field() }} 
+
+        <div class="box-body">
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-file-text-o"></i></span>
+                <input type="text" class="form-control" name="title-pt" value="{{ $servicePt->title }}" required="" data-parsley-errors-container="#errorTitle" data-parsley-error-message="Titlo é obrigatório">
+            </div>
+            <div id="errorTitle" name="errordiv1" class="error-span"></div>
+        </div>
+
+        <div class="box-body">
+            <div class="input-group width100">
+                <textarea id="elm1" data-type="textarea"  name="description-pt" required="" data-parsley-errors-container="#errorDescription" data-parsley-error-message="Descrição é obrigatória"  aria-hidden="true" data-parsley-id="5609" > {{ $servicePt->description }}</textarea>
+            </div>
+            <div id="errorDescription" name="errordiv1" class="error-span"></div>
+        </div>
+    
+        <div class="box-body">
+                <div id="main-image">Imagem</div>
+            </div>
+        
+        <input type="hidden" name="id" id="id" value="{{ $service->id }}">
+
+        <!-- submit -->
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Submeter</button>
+        </div>
+    </form>
+</div>
 
     
-    <script>
-
-
+<script>
 
 
 jQuery( document ).ready(function() {
-        
-    jQuery("#form").parsley();
+    
+
 
     function fileUploader(name,folder,maxFiles,acceptedTypes,folderName){
+
         jQuery("#"+name).uploadFile({
         url:'{{ action("backoffice\ServicesController@imageUpload") }}',
         fileName: name,
@@ -102,5 +102,6 @@ jQuery( document ).ready(function() {
     jQuery("#main-image").onload = fileUploader('main-image','main-image',1,'image/*','main-image');
 
 });
-    </script>
-    @stop
+
+</script>
+@stop

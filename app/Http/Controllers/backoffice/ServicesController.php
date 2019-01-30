@@ -13,7 +13,8 @@ use Analytics;
 use Spatie\Analytics\Period;
 use Lava;
 use App\Services;
-use App\Portfolio;
+use App\Language;
+use App\ServicesTranslations;
 use Toastr;
 
 
@@ -21,14 +22,12 @@ use Toastr;
 class ServicesController extends Controller
 {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    private $ServiceImage; 
+
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $ServiceImage = ''; 
     }
 
     /**
@@ -38,13 +37,13 @@ class ServicesController extends Controller
      */
     public function index()
     {   
-
-
         $source = public_path() . '/images/services/tmp';
         File::deleteDirectory($source);
 
         $services = DB::table('services')->get();
-        return view('backoffice.pages.services.services', compact('services'));
+        $servicesTranslations = DB::table('services_translations')->get(); 
+
+        return view('backoffice.pages.services.services', compact('services', 'servicesTranslations'));
     }
 
     public function create()
@@ -54,28 +53,41 @@ class ServicesController extends Controller
 
     public function store(Request $request)
     {
-
+        // create artist
         $service = new Services();
-
-        $service->title = $request->request->get('title');
-        $service->description = $request->request->get('description');
-
         $service->save();
 
-        $serviceId = DB::table('services')->where('title', '=', $service->title)->get()->first();
+        //get artist ID
+        $serviceId = Services::all()->last()->id;
 
+        //create PT translation
+        $servicePt = new ServicesTranslations();       
+        $servicePt->title = $request->request->get('title-pt'); 
+        $servicePt->description = $request->request->get('description-pt');
+        $servicePt->servicesId = $serviceId; 
+        $servicePt->languageId = Language::all()->get(0)->id;  //lang
+        $servicePt->save();
+
+        //Create artist folder if doesn't  exists
         $source = public_path() . '/services';
-        $destination = public_path() . '/images/services' . '/' . $serviceId->id;
+        $destination = public_path() . '/images/services' . '/' . $serviceId;
 
         if (!File::exists($destination)) {
             File::makeDirectory($destination, 0777, true);
         }
 
-        $this->storeImage('main-image', $serviceId->id);
+        //save img uploaded
+        $this->storeImage('main-image', $serviceId);
 
-        $tmpFolder = public_path() . '/images/services/tmp';
+        //Delete tmp directory
+        $source = public_path() . '/images/services/tmp';
 
-        File::deleteDirectory($tmpFolder);
+        File::deleteDirectory($source);
+
+        //get filename 
+        $currentImg = File::allFiles(public_path() . $this->ServiceImage)[0]->getRelativePathname();
+        //update artist with img path
+        DB::table('services')->where('id', $serviceId)->update(['image' => $this->ServiceImage . '/'.  $currentImg]);
 
         Toastr::success('Service created with success.', 'Services', ["positionClass" => "toast-top-center"]);
 
@@ -87,6 +99,8 @@ class ServicesController extends Controller
     {
         $service = DB::table('services')->where('id', '=', $id)->get()->first();
 
+        $servicePt = DB::table('services_translations')->where([['servicesId', '=', $id], ['languageId', '=', '1']])->get()->first();
+                
         $destination = public_path() . '/images/services/tmp';
 
         if (!File::exists($destination)) {
@@ -95,7 +109,7 @@ class ServicesController extends Controller
 
         $this->copyFolderToTmp('main-image', $id);
 
-        return view('backoffice.pages.services.edit-services', compact('service'));
+        return view('backoffice.pages.services.edit-services', compact('service', 'servicePt', 'serviceEn', 'serviceFr'));
     }
 
     public function update(Request $request)
@@ -104,24 +118,45 @@ class ServicesController extends Controller
         $source = public_path() . '/images/services/' . $request->request->get('id');
         File::deleteDirectory($source);
 
-        // car main features
+        // artist main image
         $this->storeImage('main-image', $request->request->get('id'));
 
-        $updatedService = array(
-            'title' => $request->request->get('title'),
-            'description' => $request->request->get('description'),
-        );
-
         $source = public_path() . '/images/services/tmp';
-
         File::deleteDirectory($source);
 
-        DB::table('services')->where('id', $request->request->get('id'))->update($updatedService);
+        // update artist PT
+        $updatedServicePt = array(
+            'title' => $request->request->get('title-pt'),
+            'description' => $request->request->get('description-pt'),
+        );
+
+        DB::table('services_translations')->where([['servicesId', '=', $request->request->get('id')], ['languageId', '=', '1']])->update($updatedServicePt);
+        
+        // update artist EN
+        $updatedServiceEn = array(
+            'title' => $request->request->get('title-en'),
+            'description' => $request->request->get('description-en'),
+        );
+
+        DB::table('services_translations')->where([['servicesId', '=', $request->request->get('id')], ['languageId', '=', '2']])->update($updatedServiceEn);
+        
+        // update artist FR
+        $updatedServiceFr = array(
+            'title' => $request->request->get('title-fr'),
+            'description' => $request->request->get('description-fr'),
+        );
+
+        DB::table('services_translations')->where([['servicesId', '=', $request->request->get('id')], ['languageId', '=', '3']])->update($updatedServiceFr);
+        
+        //get filename
+        $currentImg = File::allFiles(public_path() . $this->ServiceImage)[0]->getRelativePathname();
+        //update sponsor with img path
+        DB::table('services')->where('id', $request->request->get('id'))->update(['image' => $this->ServiceImage . '/'.  $currentImg]);
 
         Toastr::success('Service edited with success.', 'Services', ["positionClass" => "toast-top-center"]);
 
-
         return Redirect::to('admin/services');
+
 
     }
 
@@ -188,6 +223,8 @@ class ServicesController extends Controller
             $destination = public_path() . '/images/services' . '/' . $serviceId . '/' . $folder;
             File::copyDirectory($source, $destination);
         }
+
+        $this->ServiceImage = strstr($destination, '/images'); 
     }
 
 

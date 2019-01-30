@@ -7,12 +7,13 @@
 @stop
 
 @section('content')
+    <!--
     <section class="content">
         <div class="row">
             <div class="col-md-3">
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>{{ $pageViews }}</h3>
+                         <h3>{{-- $pageViews --}}</h3>
                         <p>Page views</p>
                     </div>
                     <div class="icon">
@@ -25,7 +26,7 @@
             <div class="col-md-3">
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>{{ $users }}</h3>
+                        <h3>{{-- $users --}}</h3>
                         <p>New Users</p>
                     </div>
                     <div class="icon">
@@ -38,7 +39,7 @@
             <div class="col-md-3">
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>{{ $visitors }}</h3>
+                        <h3>{{-- $visitors --}}</h3>
                         <p>Visitors</p>
                     </div>
                     <div class="icon">
@@ -51,7 +52,7 @@
             <div class="col-md-3">
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>{{ $time }}</h3>
+                        <h3>{{-- $time --}}</h3>
                         <p>Time</p>
                     </div>
                     <div class="icon">
@@ -68,13 +69,13 @@
             </div>
         </div>
     </section>
-
+    -->
 {!! Toastr::message() !!}
 
 
 <script>
-
-    var count = <?php echo json_encode($countries[0]); ?>;
+    /*
+    var count = <?php //echo json_encode($countries[0]); ?>;
     var visitorsData = {};
 
 
@@ -97,5 +98,6 @@
         el.html(el.html()+' (GDP - '+visitorsData[code]+')');
     }
     });
+    */
 </script>
 @stop

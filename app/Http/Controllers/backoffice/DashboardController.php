@@ -30,7 +30,10 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        // Uncomment the code to display graphs with data from Google Analytics
+
+        /* 
         $user = Auth::user();
 
         $pageViews = Analytics::fetchVisitorsAndPageViews(Period::days(7))[0]['pageViews'];
@@ -73,9 +76,13 @@ class DashboardController extends Controller
 
         ]);
 
-        //fetch visitors and page views for the past week
 
         return view('backoffice.pages.dashboard.dashboard', compact('pageViews', 'users', 'time', 'visitors', 'countries', 'devicesPie'));
+
+        */
+
+        
+        return view('backoffice.pages.dashboard.dashboard');
     }
 
 }
