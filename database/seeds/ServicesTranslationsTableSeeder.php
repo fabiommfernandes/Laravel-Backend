@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
-
-class PoliciesTranslationsTableSeeder extends Seeder
+class ServicesTranslationsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +11,7 @@ class PoliciesTranslationsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\PolicyTranslations::class, 1)->create();
+        factory(App\ServicesTranslations::class, 3)->create();
+
     }
 }

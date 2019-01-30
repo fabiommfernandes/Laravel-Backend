@@ -14,11 +14,11 @@ return [
     |
  */
 
-    'title' => 'Ideal Ambulances',
+    'title' => 'Backoffice',
 
-    'title_prefix' => '',
+    'title_prefix' => 'B',
 
-    'title_postfix' => '',
+    'title_postfix' => 'O',
 
     /*
     |--------------------------------------------------------------------------
@@ -31,9 +31,9 @@ return [
     |
      */
 
-    'logo' => '<b>Ideal</b> Ambulances',
+    'logo' => '<b>Back</b>office',
 
-    'logo_mini' => '<b>I</b>A',
+    'logo_mini' => '<b>B</b>Office',
 
     /*
     |--------------------------------------------------------------------------

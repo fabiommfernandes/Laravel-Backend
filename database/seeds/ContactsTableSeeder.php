@@ -12,23 +12,6 @@ class ContactsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-	        DB::table('contacts')->insert([
-	            'email' => $faker->email,
-
-                'phone' => $faker->phoneNumber,
-
-                'secondaryPhone' => $faker->phoneNumber,
-                
-                'adress' => $faker->address,
-
-                'facebook' => $faker->url,
-
-                'twitter' => $faker->url,
-
-                'linkedin' => $faker->url,
-
-                'created_at' => date("Y-m-d H:i:s")
-	        ]);
+        factory(App\Contact::class, 1)->create();
     }
 }

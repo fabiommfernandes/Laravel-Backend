@@ -11,8 +11,7 @@ class PoliciesTableSeeder extends Seeder
      */
     public function run()
     {
-	        DB::table('policies')->insert([
-                'created_at' => date("Y-m-d H:i:s")
-            ]);
+        factory(App\Policy::class, 1)->create();
+
     }
 }

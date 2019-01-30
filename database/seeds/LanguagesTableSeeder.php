@@ -13,20 +13,6 @@ class LanguagesTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('languages')->insert([
-
-            'name' => 'en',
-
-            'created_at' => date("Y-m-d H:i:s")
-
-        ]);
-
-        DB::table('languages')->insert([
-
-            'name' => 'fr',
-
-            'created_at' => date("Y-m-d H:i:s")
-
-        ]);
+        factory(App\Language::class, 1)->create();
     }
 }
