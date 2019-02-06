@@ -2,6 +2,11 @@
 
 This repo contains the source code of our backoffice.
 
+# Date
+
+June 2018
+
+
 ## Example
 
 <img style="max-width:100%; height: auto" src="https://github.com/rguerreiro7/Backoffice/blob/master/public/images/backoffice_preview.png">
